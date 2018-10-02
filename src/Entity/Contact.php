@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ContactRepository")
@@ -25,16 +26,22 @@ class Contact
 
     /**
      * @ORM\Column(type="string", length=30)
+     * @Assert\NotBlank()
      */
-    private $first_name;
+    private $firstName;
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\NotBlank()
      */
-    private $last_name;
+    private $lastName;
 
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
+     * @Assert\Email(
+     *     message = "The email '{{ value }}' is not a valid email.",
+     *     checkMX = true
+     * )
      */
     private $email;
 
@@ -44,13 +51,21 @@ class Contact
     private $phone;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Partnership", mappedBy="contact")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Partnership", mappedBy="contact")
      */
     private $partnerships;
 
     public function __construct()
     {
         $this->partnerships = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->id
+            ? trim(sprintf('%s %s %s', $this->title, $this->firstName, $this->lastName))
+            : ''
+        ;
     }
 
     public function getId(): ?int
@@ -72,24 +87,24 @@ class Contact
 
     public function getFirstName(): ?string
     {
-        return $this->first_name;
+        return $this->firstName;
     }
 
-    public function setFirstName(string $first_name): self
+    public function setFirstName(string $firstName): self
     {
-        $this->first_name = $first_name;
+        $this->firstName = $firstName;
 
         return $this;
     }
 
     public function getLastName(): ?string
     {
-        return $this->last_name;
+        return $this->lastName;
     }
 
-    public function setLastName(string $last_name): self
+    public function setLastName(string $lastName): self
     {
-        $this->last_name = $last_name;
+        $this->lastName = $lastName;
 
         return $this;
     }

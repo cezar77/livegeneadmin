@@ -51,7 +51,7 @@ class Partnership
     private $samplingActivities;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Contact", inversedBy="partnerships")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Contact", inversedBy="partnerships")
      */
     private $contact;
 

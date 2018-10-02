@@ -57,3 +57,10 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, label: 'Organisations' }
         public: true
+
+    admin.contact:
+        class: App\Admin\ContactAdmin
+        arguments: [~, App\Entity\Contact, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: 'Contacts' }
+        public: true
