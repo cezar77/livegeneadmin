@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\StaffRepository")
@@ -19,27 +20,36 @@ class Staff
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=15)
+     * @ORM\Column(type="string", length=15, unique=true)
+     * @Assert\NotBlank()
      */
     private $username;
 
     /**
      * @ORM\Column(type="string", length=30)
+     * @Assert\NotBlank()
      */
-    private $first_name;
+    private $firstName;
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\NotBlank()
      */
-    private $last_name;
+    private $lastName;
 
     /**
      * @ORM\Column(type="string", length=30)
+     * @Assert\NotBlank()
      */
-    private $home_program;
+    private $homeProgram;
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\Email(
+     *     message = "The email '{{ value }}' is not a valid email.",
+     *     checkMX = true
+     * )
+     * @Assert\NotBlank()
      */
     private $email;
 
@@ -57,6 +67,11 @@ class Staff
     {
         $this->projects = new ArrayCollection();
         $this->staffRoles = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->id ? sprintf('%s %s', $this->firstName, $this->lastName) : '';
     }
 
     public function getId(): ?int
@@ -78,36 +93,36 @@ class Staff
 
     public function getFirstName(): ?string
     {
-        return $this->first_name;
+        return $this->firstName;
     }
 
-    public function setFirstName(string $first_name): self
+    public function setFirstName(string $firstName): self
     {
-        $this->first_name = $first_name;
+        $this->firstName = $firstName;
 
         return $this;
     }
 
     public function getLastName(): ?string
     {
-        return $this->last_name;
+        return $this->lastName;
     }
 
-    public function setLastName(string $last_name): self
+    public function setLastName(string $lastName): self
     {
-        $this->last_name = $last_name;
+        $this->lastName = $lastName;
 
         return $this;
     }
 
     public function getHomeProgram(): ?string
     {
-        return $this->home_program;
+        return $this->homeProgram;
     }
 
-    public function setHomeProgram(string $home_program): self
+    public function setHomeProgram(string $homeProgram): self
     {
-        $this->home_program = $home_program;
+        $this->homeProgram = $homeProgram;
 
         return $this;
     }

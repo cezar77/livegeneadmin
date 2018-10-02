@@ -122,9 +122,6 @@
     "phpoption/phpoption": {
         "version": "1.5.0"
     },
-    "picoss/sonata-extra-admin-bundle": {
-        "version": "4.0"
-    },
     "psr/cache": {
         "version": "1.0.1"
     },
