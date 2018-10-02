@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\OrganisationRepository")
@@ -21,21 +22,24 @@ class Organisation
     /**
      * @ORM\Column(type="string", length=20, nullable=true)
      */
-    private $short_name;
+    private $shortName;
 
     /**
      * @ORM\Column(type="string", length=200)
+     * @Assert\NotBlank()
      */
-    private $full_name;
+    private $fullName;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
      */
-    private $logo_url;
+    private $logoUrl;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Country", inversedBy="organisations")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank()
      */
     private $country;
 
@@ -49,6 +53,14 @@ class Organisation
         $this->partnerships = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->id
+            ? sprintf('%s (%s)', $this->fullName, $this->shortName)
+	    : ''
+        ;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -56,36 +68,36 @@ class Organisation
 
     public function getShortName(): ?string
     {
-        return $this->short_name;
+        return $this->shortName;
     }
 
-    public function setShortName(?string $short_name): self
+    public function setShortName(?string $shortName): self
     {
-        $this->short_name = $short_name;
+        $this->shortName = $shortName;
 
         return $this;
     }
 
     public function getFullName(): ?string
     {
-        return $this->full_name;
+        return $this->fullName;
     }
 
-    public function setFullName(string $full_name): self
+    public function setFullName(string $fullName): self
     {
-        $this->full_name = $full_name;
+        $this->fullName = $fullName;
 
         return $this;
     }
 
     public function getLogoUrl(): ?string
     {
-        return $this->logo_url;
+        return $this->logoUrl;
     }
 
-    public function setLogoUrl(string $logo_url): self
+    public function setLogoUrl(string $logoUrl): self
     {
-        $this->logo_url = $logo_url;
+        $this->logoUrl = $logoUrl;
 
         return $this;
     }
