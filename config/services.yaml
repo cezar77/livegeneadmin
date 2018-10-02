@@ -92,3 +92,17 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, label: 'Sampling Document Types' }
         public: true
+
+    admin.sampling_documentation:
+        class: App\Admin\SamplingDocumentationAdmin
+        arguments: [~, App\Entity\SamplingDocumentation, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: 'Sampling Documentations' }
+        public: true
+
+    admin.sampling_activity:
+        class: App\Admin\SamplingActivityAdmin
+        arguments: [~, App\Entity\SamplingActivity, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: 'Sampling Activities' }
+        public: true

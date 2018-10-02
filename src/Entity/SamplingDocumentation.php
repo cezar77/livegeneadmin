@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\SamplingDocumentationRepository")
@@ -30,6 +31,8 @@ class SamplingDocumentation
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Please upload a document as PDF file")
+     * @Assert\File(mimeTypes={ "application/pdf" })
      */
     private $document;
 
@@ -50,12 +53,12 @@ class SamplingDocumentation
         return $this;
     }
 
-    public function getDocumentType(): ?SamplingDocumentType
+    public function getSamplingDocumentType(): ?SamplingDocumentType
     {
         return $this->documentType;
     }
 
-    public function setDocumentType(?SamplingDocumentType $documentType): self
+    public function setSamplingDocumentType(?SamplingDocumentType $documentType): self
     {
         $this->documentType = $documentType;
 
