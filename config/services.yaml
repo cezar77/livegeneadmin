@@ -71,3 +71,10 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, label: 'Expenditures' }
         public: true
+
+    admin.partnership_type:
+        class: App\Admin\PartnershipTypeAdmin
+        arguments: [~, App\Entity\PartnershipType, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: 'Partnership Types' }
+        public: true
