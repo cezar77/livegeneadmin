@@ -20,8 +20,9 @@ class Country
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=2)
+     * @ORM\Column(type="string", length=2, unique=true)
      * @Assert\Country()
+     * @Assert\NotBlank()
      */
     private $country;
 
@@ -39,6 +40,11 @@ class Country
     {
         $this->organisations = new ArrayCollection();
         $this->countryRoles = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->country ? $this->country : '';
     }
 
     public function getId(): ?int
