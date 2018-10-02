@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\SDGRepository")
@@ -19,29 +20,36 @@ class SDG
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=50, unique=true)
+     * @Assert\NotBlank()
      */
     private $headline;
 
     /**
-     * @ORM\Column(type="string", length=200)
+     * @ORM\Column(type="string", length=200, unique=true)
+     * @Assert\NotBlank()
      */
-    private $full_name;
+    private $fullName;
 
     /**
-     * @ORM\Column(type="string", length=7)
+     * @ORM\Column(type="string", length=7, unique=true)
+     * @Assert\NotBlank()
      */
     private $color;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\Url()
+     * @Assert\NotBlank()
      */
     private $link;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\Url()
+     * @Assert\NotBlank()
      */
-    private $logo_url;
+    private $logoUrl;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\SDGRole", mappedBy="sdg")
@@ -51,6 +59,11 @@ class SDG
     public function __construct()
     {
         $this->SDGRoles = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->id ? sprintf('%s - %s', $this->id, $this->headline) : '';
     }
 
     public function getId(): ?int
@@ -65,19 +78,19 @@ class SDG
 
     public function setHeadline(string $headline): self
     {
-        $this->headline = $headline;
+        $this->headline = strtoupper($headline);
 
         return $this;
     }
 
     public function getFullName(): ?string
     {
-        return $this->full_name;
+        return $this->fullName;
     }
 
-    public function setFullName(string $full_name): self
+    public function setFullName(string $fullName): self
     {
-        $this->full_name = $full_name;
+        $this->fullName = $fullName;
 
         return $this;
     }
@@ -108,12 +121,12 @@ class SDG
 
     public function getLogoUrl(): ?string
     {
-        return $this->logo_url;
+        return $this->logoUrl;
     }
 
-    public function setLogoUrl(string $logo_url): self
+    public function setLogoUrl(string $logoUrl): self
     {
-        $this->logo_url = $logo_url;
+        $this->logoUrl = $logoUrl;
 
         return $this;
     }

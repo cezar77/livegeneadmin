@@ -34,5 +34,12 @@ services:
         class: App\Admin\CountryAdmin
         arguments: [~, App\Entity\Country, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: Country }
+            - { name: sonata.admin, manager_type: orm, label: Countries }
+        public: true
+
+    admin.sdg:
+        class: App\Admin\SDGAdmin
+        arguments: [~, App\Entity\SDG, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: 'Sustainable Development Goals' }
         public: true
