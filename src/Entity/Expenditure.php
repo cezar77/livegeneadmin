@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ExpenditureRepository")
@@ -18,43 +19,56 @@ class Expenditure
 
     /**
      * @ORM\Column(type="string", length=20)
+     * @Assert\NotBlank()
      */
-    private $ilri_code;
+    private $ilriCode;
 
     /**
      * @ORM\Column(type="string", length=200)
+     * @Assert\NotBlank()
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=20)
+     * @Assert\NotBlank()
      */
-    private $home_program;
+    private $homeProgram;
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\NotBlank()
      */
-    private $start_date;
+    private $startDate;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=true)
      */
-    private $end_date;
+    private $endDate;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\NotBlank()
      */
-    private $report_date;
+    private $reportDate;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $total_budget;
+    private $totalBudget;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
     private $amount;
+
+    public function __toString()
+    {
+        return $this->id
+            ? sprintf('%s - %s', $this->name, $this->reportDate->format('Y-m-d H:i:s'))
+            : ''
+        ;
+    }
 
     public function getId(): ?int
     {
@@ -63,12 +77,12 @@ class Expenditure
 
     public function getIlriCode(): ?string
     {
-        return $this->ilri_code;
+        return $this->ilriCode;
     }
 
-    public function setIlriCode(string $ilri_code): self
+    public function setIlriCode(string $ilriCode): self
     {
-        $this->ilri_code = $ilri_code;
+        $this->ilriCode = $ilriCode;
 
         return $this;
     }
@@ -87,60 +101,60 @@ class Expenditure
 
     public function getHomeProgram(): ?string
     {
-        return $this->home_program;
+        return $this->homeProgram;
     }
 
-    public function setHomeProgram(string $home_program): self
+    public function setHomeProgram(string $homeProgram): self
     {
-        $this->home_program = $home_program;
+        $this->homeProgram = $homeProgram;
 
         return $this;
     }
 
     public function getStartDate(): ?\DateTimeInterface
     {
-        return $this->start_date;
+        return $this->startDate;
     }
 
-    public function setStartDate(\DateTimeInterface $start_date): self
+    public function setStartDate(\DateTimeInterface $startDate): self
     {
-        $this->start_date = $start_date;
+        $this->startDate = $startDate;
 
         return $this;
     }
 
     public function getEndDate(): ?\DateTimeInterface
     {
-        return $this->end_date;
+        return $this->endDate;
     }
 
-    public function setEndDate(\DateTimeInterface $end_date): self
+    public function setEndDate(\DateTimeInterface $endDate): self
     {
-        $this->end_date = $end_date;
+        $this->endDate = $endDate;
 
         return $this;
     }
 
     public function getReportDate(): ?\DateTimeInterface
     {
-        return $this->report_date;
+        return $this->reportDate;
     }
 
-    public function setReportDate(\DateTimeInterface $report_date): self
+    public function setReportDate(\DateTimeInterface $reportDate): self
     {
-        $this->report_date = $report_date;
+        $this->reportDate = $reportDate;
 
         return $this;
     }
 
     public function getTotalBudget(): ?int
     {
-        return $this->total_budget;
+        return $this->totalBudget;
     }
 
-    public function setTotalBudget(?int $total_budget): self
+    public function setTotalBudget(?int $totalBudget): self
     {
-        $this->total_budget = $total_budget;
+        $this->totalBudget = $totalBudget;
 
         return $this;
     }
