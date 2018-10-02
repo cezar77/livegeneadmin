@@ -21,48 +21,48 @@ class Project
     /**
      * @ORM\Column(type="string", length=20)
      */
-    private $ilri_code;
+    private $ilriCode;
 
     /**
      * @ORM\Column(type="string", length=200)
      */
-    private $full_name;
+    private $fullName;
 
     /**
      * @ORM\Column(type="string", length=50)
      */
-    private $short_name;
+    private $shortName;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Staff", inversedBy="projects")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $principal_investigator;
+    private $principalInvestigator;
 
     /**
      * @ORM\Column(type="string", length=20)
      */
-    private $projects_group;
+    private $projectsGroup;
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
      */
-    private $donor_reference;
+    private $donorReference;
 
     /**
      * @ORM\Column(type="string", length=200, nullable=true)
      */
-    private $donor_project_name;
+    private $donorProjectName;
 
     /**
      * @ORM\Column(type="date")
      */
-    private $start_date;
+    private $startDate;
 
     /**
      * @ORM\Column(type="date")
      */
-    private $end_date;
+    private $endDate;
 
     /**
      * @ORM\Column(type="integer")
@@ -72,7 +72,7 @@ class Project
     /**
      * @ORM\Column(type="integer")
      */
-    private $capacity_development;
+    private $capacityDevelopment;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\SDGRole", mappedBy="project")
@@ -108,6 +108,11 @@ class Project
         $this->samplingActivities = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->id ? $this->fullName : '';
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -115,108 +120,108 @@ class Project
 
     public function getIlriCode(): ?string
     {
-        return $this->ilri_code;
+        return $this->ilriCode;
     }
 
-    public function setIlriCode(string $ilri_code): self
+    public function setIlriCode(string $ilriCode): self
     {
-        $this->ilri_code = $ilri_code;
+        $this->ilriCode = $ilriCode;
 
         return $this;
     }
 
     public function getFullName(): ?string
     {
-        return $this->full_name;
+        return $this->fullName;
     }
 
-    public function setFullName(string $full_name): self
+    public function setFullName(string $fullName): self
     {
-        $this->full_name = $full_name;
+        $this->fullName = $fullName;
 
         return $this;
     }
 
     public function getShortName(): ?string
     {
-        return $this->short_name;
+        return $this->shortName;
     }
 
-    public function setShortName(string $short_name): self
+    public function setShortName(string $shortName): self
     {
-        $this->short_name = $short_name;
+        $this->shortName = $shortName;
 
         return $this;
     }
 
     public function getPrincipalInvestigator(): ?Staff
     {
-        return $this->principal_investigator;
+        return $this->principalInvestigator;
     }
 
-    public function setPrincipalInvestigator(?Staff $principal_investigator): self
+    public function setPrincipalInvestigator(?Staff $principalInvestigator): self
     {
-        $this->principal_investigator = $principal_investigator;
+        $this->principalInvestigator = $principalInvestigator;
 
         return $this;
     }
 
     public function getProjectsGroup(): ?string
     {
-        return $this->projects_group;
+        return $this->projectsGroup;
     }
 
-    public function setProjectsGroup(string $projects_group): self
+    public function setProjectsGroup(string $projectsGroup): self
     {
-        $this->projects_group = $projects_group;
+        $this->projectsGroup = $projectsGroup;
 
         return $this;
     }
 
     public function getDonorReference(): ?string
     {
-        return $this->donor_reference;
+        return $this->donorReference;
     }
 
-    public function setDonorReference(?string $donor_reference): self
+    public function setDonorReference(?string $donorReference): self
     {
-        $this->donor_reference = $donor_reference;
+        $this->donorReference = $donorReference;
 
         return $this;
     }
 
     public function getDonorProjectName(): ?string
     {
-        return $this->donor_project_name;
+        return $this->donorProjectName;
     }
 
-    public function setDonorProjectName(?string $donor_project_name): self
+    public function setDonorProjectName(?string $donorProjectName): self
     {
-        $this->donor_project_name = $donor_project_name;
+        $this->donorProjectName = $donorProjectName;
 
         return $this;
     }
 
     public function getStartDate(): ?\DateTimeInterface
     {
-        return $this->start_date;
+        return $this->startDate;
     }
 
-    public function setStartDate(\DateTimeInterface $start_date): self
+    public function setStartDate(\DateTimeInterface $startDate): self
     {
-        $this->start_date = $start_date;
+        $this->startDate = $startDate;
 
         return $this;
     }
 
     public function getEndDate(): ?\DateTimeInterface
     {
-        return $this->end_date;
+        return $this->endDate;
     }
 
-    public function setEndDate(\DateTimeInterface $end_date): self
+    public function setEndDate(\DateTimeInterface $endDate): self
     {
-        $this->end_date = $end_date;
+        $this->endDate = $endDate;
 
         return $this;
     }
@@ -235,12 +240,12 @@ class Project
 
     public function getCapacityDevelopment(): ?int
     {
-        return $this->capacity_development;
+        return $this->capacityDevelopment;
     }
 
-    public function setCapacityDevelopment(int $capacity_development): self
+    public function setCapacityDevelopment(int $capacityDevelopment): self
     {
-        $this->capacity_development = $capacity_development;
+        $this->capacityDevelopment = $capacityDevelopment;
 
         return $this;
     }

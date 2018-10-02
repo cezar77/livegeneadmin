@@ -78,3 +78,10 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, label: 'Partnership Types' }
         public: true
+
+    admin.project:
+        class: App\Admin\ProjectAdmin
+        arguments: [~, App\Entity\Project, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: 'Projects' }
+        public: true
