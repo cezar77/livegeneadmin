@@ -21,12 +21,12 @@ class SamplingDocumentType
     /**
      * @ORM\Column(type="string", length=20)
      */
-    private $short_name;
+    private $shortName;
 
     /**
      * @ORM\Column(type="string", length=100)
      */
-    private $long_name;
+    private $longName;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\SamplingDocumentation", mappedBy="documentType")
@@ -38,6 +38,11 @@ class SamplingDocumentType
         $this->samplingDocuments = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->id ? $this->shortName : '';
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -45,24 +50,24 @@ class SamplingDocumentType
 
     public function getShortName(): ?string
     {
-        return $this->short_name;
+        return $this->shortName;
     }
 
-    public function setShortName(string $short_name): self
+    public function setShortName(string $shortName): self
     {
-        $this->short_name = $short_name;
+        $this->shortName = $shortName;
 
         return $this;
     }
 
     public function getLongName(): ?string
     {
-        return $this->long_name;
+        return $this->longName;
     }
 
-    public function setLongName(string $long_name): self
+    public function setLongName(string $longName): self
     {
-        $this->long_name = $long_name;
+        $this->longName = $longName;
 
         return $this;
     }

@@ -85,3 +85,10 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, label: 'Projects' }
         public: true
+
+    admin.sampling_document_type:
+        class: App\Admin\SamplingDocumentTypeAdmin
+        arguments: [~, App\Entity\SamplingDocumentType, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: 'Sampling Document Types' }
+        public: true
