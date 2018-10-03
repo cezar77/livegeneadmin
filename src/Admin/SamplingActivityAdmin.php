@@ -7,17 +7,26 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class SamplingActivityAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
 	    $formMapper
-            ->add('project')
-            ->add('partnership')
+            ->add('project', null, array(
+                'placeholder' => '-- please choose a project --'
+            ))
+            ->add('partnership', null, array(
+                'placeholder' => '-- please choose a partnership --'
+            ))
             ->add('description')
-            ->add('startDate')
-            ->add('endDate')
+            ->add('startDate', DateType::class, array(
+                'widget' => 'single_text'
+            ))
+            ->add('endDate', DateType::class, array(
+                'widget' => 'single_text'
+            ))
         ;
     }
     

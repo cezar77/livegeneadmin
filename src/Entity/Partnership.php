@@ -62,6 +62,14 @@ class Partnership
         $this->samplingActivities = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->id
+            ? sprintf('%s - %s (%s)', $this->project, $this->partner, $this->partnershipType)
+            : ''
+        ;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

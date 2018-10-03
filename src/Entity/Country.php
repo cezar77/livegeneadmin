@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Intl\Intl;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CountryRepository")
@@ -44,7 +45,7 @@ class Country
 
     public function __toString()
     {
-        return $this->country ? $this->country : '';
+        return $this->country ? $this->getCountryName() : '';
     }
 
     public function getId(): ?int
@@ -124,5 +125,10 @@ class Country
         }
 
         return $this;
+    }
+
+    public function getCountryName()
+    {
+        return Intl::getRegionBundle()->getCountryName($this->getCountry());
     }
 }

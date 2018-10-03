@@ -17,10 +17,10 @@ class SDGAdmin extends AbstractAdmin
         $formMapper
             ->add('headline')
             ->add('fullName')
-	    ->add('color', ColorType::class)
-	    ->add('link', UrlType::class)
-	    ->add('logoUrl', UrlType::class)
-	;
+            ->add('color', ColorType::class)
+            ->add('link', UrlType::class)
+            ->add('logoUrl', UrlType::class)
+        ;
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
@@ -38,7 +38,7 @@ class SDGAdmin extends AbstractAdmin
                     'show' => array(),
                     'edit' => array(),
                 )
-	    ))
+            ))
         ;
     }
 
@@ -46,9 +46,9 @@ class SDGAdmin extends AbstractAdmin
     {
         $showMapper
             ->add('headline')
-	    ->add('fullName')
-	    ->add('color')
-	    ->add('link')
+            ->add('fullName')
+            ->add('color')
+            ->add('link')
         ;
     }
 }

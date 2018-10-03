@@ -16,9 +16,11 @@ class OrganisationAdmin extends AbstractAdmin
         $formMapper
             ->add('shortName')
             ->add('fullName')
-	    ->add('logoUrl', UrlType::class)
-	    ->add('country')
-	;
+            ->add('logoUrl', UrlType::class)
+            ->add('country', null, array(
+                'placeholder' => '-- please choose a country --'
+            ))
+        ;
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
@@ -31,13 +33,13 @@ class OrganisationAdmin extends AbstractAdmin
         $listMapper->addIdentifier('id')
             ->add('shortName')
             ->add('fullName')
-	    ->add('country')
+            ->add('country')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
                     'edit' => array(),
                 )
-	    ))
+        ))
         ;
     }
 
@@ -46,8 +48,8 @@ class OrganisationAdmin extends AbstractAdmin
         $showMapper
             ->add('shortName')
             ->add('fullName')
-	    ->add('logoUrl')
-	    ->add('country')
+            ->add('logoUrl')
+            ->add('country')
         ;
     }
 }

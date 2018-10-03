@@ -13,8 +13,12 @@ class StaffRoleAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('project')
-            ->add('person')
+            ->add('project', null, array(
+                'placeholder' => '-- please choose a project --'
+            ))
+            ->add('person', null, array(
+                'placeholder' => '-- please choose a person --'
+            ))
             ->add('percent')
         ;
     }

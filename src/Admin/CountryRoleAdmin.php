@@ -13,8 +13,12 @@ class CountryRoleAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('project')
-            ->add('country')
+            ->add('project', null, array(
+                'placeholder' => '-- please choose a project --'
+            ))
+            ->add('country', null, array(
+                'placeholder' => '-- please choose a country --'
+            ))
             ->add('percent')
         ;
     }

@@ -13,8 +13,12 @@ class SDGRoleAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('project')
-            ->add('sdg')
+            ->add('project', null, array(
+                'placeholder' => '-- please choose a project --'
+            ))
+            ->add('sdg', null, array(
+                'placeholder' => '-- please choose a SDG --'
+            ))
             ->add('percent')
         ;
     }

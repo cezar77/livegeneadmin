@@ -54,6 +54,7 @@ class ContactAdmin extends AbstractAdmin
 	        ->add('lastName')
 	        ->add('email')
 	        ->add('phone')
+            ->add('partnerships')
         ;
     }
 }

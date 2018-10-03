@@ -7,21 +7,30 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class ProjectAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('ilriCode')
+            ->add('ilriCode', null, array(
+                'label' => 'ILRI code'
+            ))
             ->add('fullName')
             ->add('shortName')
-            ->add('principalInvestigator')
+            ->add('principalInvestigator', null, array(
+                'placeholder' => '-- please choose a person --'
+            ))
             ->add('projectsGroup')
             ->add('donorReference')
             ->add('donorProjectName')
-            ->add('startDate')
-            ->add('endDate')
+            ->add('startDate', DateType::class, array(
+                'widget' => 'single_text'
+            ))
+            ->add('endDate', DateType::class, array(
+                'widget' => 'single_text'
+            ))
             ->add('status')
             ->add('capacityDevelopment')
         ;

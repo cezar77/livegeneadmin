@@ -38,8 +38,13 @@ class CountryAdmin extends AbstractAdmin
 
     protected function configureShowFields(ShowMapper $showMapper)
     {
-        $showMapper->add('country')
-            ->add('country.country.fullname')
+        $showMapper
+            ->add('country', null, array(
+                'label' => 'ISO 3166-1 alpha-2 code'
+            ))
+            ->add('countryName', null, array(
+                'label' => 'Country name'
+            ))
         ;
     }
 }
