@@ -19,13 +19,13 @@ class Partnership
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Project")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Project", inversedBy="partnerships")
      * @ORM\JoinColumn(nullable=false)
      */
     private $project;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Organisation")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Organisation", inversedBy="partnerships")
      * @ORM\JoinColumn(nullable=false)
      */
     private $partner;
@@ -41,7 +41,12 @@ class Partnership
     private $endDate;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Contact")
+     * @ORM\OneToMany(targetEntity="App\Entity\SamplingActivity", mappedBy="partnership")
+     */
+    private $samplingActivities;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Contact", inversedBy="partnerships")
      */
     private $contact;
 
@@ -54,6 +59,7 @@ class Partnership
     public function __construct()
     {
         $this->contact = new ArrayCollection();
+        $this->samplingActivities = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -108,6 +114,36 @@ class Partnership
 
         return $this;
     }
+    /**
+     * @return Collection|SamplingActivity[]
+     */
+    public function getSamplingActivities(): Collection
+    {
+        return $this->samplingActivities;
+    }
+
+    public function addSamplingActivity(SamplingActivity $samplingActivity): self
+    {
+        if (!$this->samplingActivities->contains($samplingActivity)) {
+            $this->samplingActivities[] = $samplingActivity;
+            $samplingActivity->setPartnership($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSamplingActivity(SamplingActivity $samplingActivity): self
+    {
+        if ($this->samplingActivities->contains($samplingActivity)) {
+            $this->samplingActivities->removeElement($samplingActivity);
+            // set the owning side to null (unless already changed)
+            if ($samplingActivity->getPartnership() === $this) {
+                $samplingActivity->setPartnership(null);
+            }
+        }
+
+        return $this;
+    }
 
     /**
      * @return Collection|Contact[]
@@ -115,7 +151,6 @@ class Partnership
     public function getContact(): Collection
     {
         return $this->contact;
-    }
 
     public function addContact(Contact $contact): self
     {
@@ -131,6 +166,18 @@ class Partnership
         if ($this->contact->contains($contact)) {
             $this->contact->removeElement($contact);
         }
+
+        return $this;
+    }
+
+    public function getPartnershipType(): ?PartnershipType
+    {
+        return $this->partnershipType;
+    }
+
+    public function setPartnershipType(?PartnershipType $partnershipType): self
+    {
+        $this->partnershipType = $partnershipType;
 
         return $this;
     }
