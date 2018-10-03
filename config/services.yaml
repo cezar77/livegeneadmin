@@ -127,3 +127,10 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, label: 'Country Roles' }
         public: true
+
+    admin.partnership:
+        class: App\Admin\PartnershipAdmin
+        arguments: [~, App\Entity\Partnership, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: 'Partnerships' }
+        public: true
