@@ -30,107 +30,108 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
-    admin.country:
-        class: App\Admin\CountryAdmin
-        arguments: [~, App\Entity\Country, ~]
+    admin.project:
+        class: App\Admin\ProjectAdmin
+        arguments: [~, App\Entity\Project, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: Countries }
-        public: true
-
-    admin.sdg:
-        class: App\Admin\SDGAdmin
-        arguments: [~, App\Entity\SDG, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, label: 'Sustainable Development Goals' }
-        public: true
-
-    admin.staff:
-        class: App\Admin\StaffAdmin
-        arguments: [~, App\Entity\Staff, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, label: 'Staff' }
+            - { name: sonata.admin, manager_type: orm, group: 'Project management', label: 'Projects' }
         public: true
 
     admin.organisation:
         class: App\Admin\OrganisationAdmin
         arguments: [~, App\Entity\Organisation, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: 'Organisations' }
-        public: true
-
-    admin.contact:
-        class: App\Admin\ContactAdmin
-        arguments: [~, App\Entity\Contact, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, label: 'Contacts' }
-        public: true
-
-    admin.expenditure:
-        class: App\Admin\ExpenditureAdmin
-        arguments: [~, App\Entity\Expenditure, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, label: 'Expenditures' }
-        public: true
-
-    admin.partnership_type:
-        class: App\Admin\PartnershipTypeAdmin
-        arguments: [~, App\Entity\PartnershipType, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, label: 'Partnership Types' }
-        public: true
-
-    admin.project:
-        class: App\Admin\ProjectAdmin
-        arguments: [~, App\Entity\Project, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, label: 'Projects' }
-        public: true
-
-    admin.sampling_document_type:
-        class: App\Admin\SamplingDocumentTypeAdmin
-        arguments: [~, App\Entity\SamplingDocumentType, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, label: 'Sampling Document Types' }
-        public: true
-
-    admin.sampling_documentation:
-        class: App\Admin\SamplingDocumentationAdmin
-        arguments: [~, App\Entity\SamplingDocumentation, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, label: 'Sampling Documentations' }
-        public: true
-
-    admin.sampling_activity:
-        class: App\Admin\SamplingActivityAdmin
-        arguments: [~, App\Entity\SamplingActivity, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, label: 'Sampling Activities' }
-        public: true
-
-    admin.sdg_role:
-        class: App\Admin\SDGRoleAdmin
-        arguments: [~, App\Entity\SDGRole, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, label: 'Sustainbale Development Goals Roles' }
-        public: true
-
-    admin.staff_role:
-        class: App\Admin\StaffRoleAdmin
-        arguments: [~, App\Entity\StaffRole, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, label: 'Staff Roles' }
-        public: true
-
-    admin.country_role:
-        class: App\Admin\CountryRoleAdmin
-        arguments: [~, App\Entity\CountryRole, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, label: 'Country Roles' }
+            - { name: sonata.admin, manager_type: orm, group: 'Project management', label: 'Organisations' }
         public: true
 
     admin.partnership:
         class: App\Admin\PartnershipAdmin
         arguments: [~, App\Entity\Partnership, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: 'Partnerships' }
+            - { name: sonata.admin, manager_type: orm, group: 'Project management', label: 'Partnerships' }
         public: true
+
+    admin.partnership_type:
+        class: App\Admin\PartnershipTypeAdmin
+        arguments: [~, App\Entity\PartnershipType, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: 'Project management', label: 'Partnership Types' }
+        public: true
+
+    admin.contact:
+        class: App\Admin\ContactAdmin
+        arguments: [~, App\Entity\Contact, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: 'Project management', label: 'Contacts' }
+        public: true
+
+    admin.staff:
+        class: App\Admin\StaffAdmin
+        arguments: [~, App\Entity\Staff, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: 'Project management', label: 'Staff' }
+        public: true
+
+    admin.staff_role:
+        class: App\Admin\StaffRoleAdmin
+        arguments: [~, App\Entity\StaffRole, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: 'Project management', label: 'Staff Roles' }
+        public: true
+
+    admin.country:
+        class: App\Admin\CountryAdmin
+        arguments: [~, App\Entity\Country, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: 'Project management',  label: Countries }
+        public: true
+
+    admin.country_role:
+        class: App\Admin\CountryRoleAdmin
+        arguments: [~, App\Entity\CountryRole, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: 'Project management', label: 'Country Roles' }
+        public: true
+
+    admin.sdg:
+        class: App\Admin\SDGAdmin
+        arguments: [~, App\Entity\SDG, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: 'Project management', label: 'Sustainable Development Goals' }
+        public: true
+
+    admin.sdg_role:
+        class: App\Admin\SDGRoleAdmin
+        arguments: [~, App\Entity\SDGRole, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: 'Project management', label: 'Sustainable Development Goals Roles' }
+        public: true
+
+    admin.expenditure:
+        class: App\Admin\ExpenditureAdmin
+        arguments: [~, App\Entity\Expenditure, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: 'Finance', label: 'Expenditures' }
+        public: true
+
+    admin.sampling_document_type:
+        class: App\Admin\SamplingDocumentTypeAdmin
+        arguments: [~, App\Entity\SamplingDocumentType, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: 'Sampling management', label: 'Sampling Document Types' }
+        public: true
+
+    admin.sampling_documentation:
+        class: App\Admin\SamplingDocumentationAdmin
+        arguments: [~, App\Entity\SamplingDocumentation, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: 'Sampling management', label: 'Sampling Documentations' }
+        public: true
+
+    admin.sampling_activity:
+        class: App\Admin\SamplingActivityAdmin
+        arguments: [~, App\Entity\SamplingActivity, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: 'Sampling management', label: 'Sampling Activities' }
+        public: true
+
