@@ -106,3 +106,10 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, label: 'Sampling Activities' }
         public: true
+
+    admin.sdg_role:
+        class: App\Admin\SDGRoleAdmin
+        arguments: [~, App\Entity\SDGRole, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: 'Sustainbale Development Goals Roles' }
+        public: true
