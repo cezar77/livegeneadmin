@@ -19,13 +19,13 @@ class Partnership
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Project", inversedBy="partnerships")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Project")
      * @ORM\JoinColumn(nullable=false)
      */
     private $project;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Organisation", inversedBy="partnerships")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Organisation")
      * @ORM\JoinColumn(nullable=false)
      */
     private $partner;
@@ -33,32 +33,27 @@ class Partnership
     /**
      * @ORM\Column(type="date", nullable=true)
      */
-    private $start_date;
+    private $startDate;
 
     /**
      * @ORM\Column(type="date", nullable=true)
      */
-    private $end_date;
+    private $endDate;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Partnership", mappedBy="partnershipType")
-     */
-    private $partnerships;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\SamplingActivity", mappedBy="partnership")
-     */
-    private $samplingActivities;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Contact", inversedBy="partnerships")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Contact")
      */
     private $contact;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\PartnershipType", inversedBy="partnerships")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $partnershipType;
+
     public function __construct()
     {
-        $this->partnerships = new ArrayCollection();
-        $this->samplingActivities = new ArrayCollection();
+        $this->contact = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -92,98 +87,62 @@ class Partnership
 
     public function getStartDate(): ?\DateTimeInterface
     {
-        return $this->start_date;
+        return $this->startDate;
     }
 
-    public function setStartDate(\DateTimeInterface $start_date): self
+    public function setStartDate(?\DateTimeInterface $startDate): self
     {
-        $this->start_date = $start_date;
+        $this->startDate = $startDate;
 
         return $this;
     }
 
     public function getEndDate(): ?\DateTimeInterface
     {
-        return $this->end_date;
+        return $this->endDate;
     }
 
-    public function setEndDate(?\DateTimeInterface $end_date): self
+    public function setEndDate(?\DateTimeInterface $endDate): self
     {
-        $this->end_date = $end_date;
+        $this->endDate = $endDate;
 
         return $this;
     }
 
     /**
-     * @return Collection|Partnership[]
+     * @return Collection|Contact[]
      */
-    public function getPartnerships(): Collection
-    {
-        return $this->partnerships;
-    }
-
-    public function addPartnership(Partnership $partnership): self
-    {
-        if (!$this->partnerships->contains($partnership)) {
-            $this->partnerships[] = $partnership;
-            $partnership->setPartnershipType($this);
-        }
-
-        return $this;
-    }
-
-    public function removePartnership(Partnership $partnership): self
-    {
-        if ($this->partnerships->contains($partnership)) {
-            $this->partnerships->removeElement($partnership);
-            // set the owning side to null (unless already changed)
-            if ($partnership->getPartnershipType() === $this) {
-                $partnership->setPartnershipType(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|SamplingActivity[]
-     */
-    public function getSamplingActivities(): Collection
-    {
-        return $this->samplingActivities;
-    }
-
-    public function addSamplingActivity(SamplingActivity $samplingActivity): self
-    {
-        if (!$this->samplingActivities->contains($samplingActivity)) {
-            $this->samplingActivities[] = $samplingActivity;
-            $samplingActivity->setPartnership($this);
-        }
-
-        return $this;
-    }
-
-    public function removeSamplingActivity(SamplingActivity $samplingActivity): self
-    {
-        if ($this->samplingActivities->contains($samplingActivity)) {
-            $this->samplingActivities->removeElement($samplingActivity);
-            // set the owning side to null (unless already changed)
-            if ($samplingActivity->getPartnership() === $this) {
-                $samplingActivity->setPartnership(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function getContact(): ?Contact
+    public function getContact(): Collection
     {
         return $this->contact;
     }
 
-    public function setContact(?Contact $contact): self
+    public function addContact(Contact $contact): self
     {
-        $this->contact = $contact;
+        if (!$this->contact->contains($contact)) {
+            $this->contact[] = $contact;
+        }
+
+        return $this;
+    }
+
+    public function removeContact(Contact $contact): self
+    {
+        if ($this->contact->contains($contact)) {
+            $this->contact->removeElement($contact);
+        }
+
+        return $this;
+    }
+
+    public function getPartnershipType(): ?PartnershipType
+    {
+        return $this->partnershipType;
+    }
+
+    public function setPartnershipType(?PartnershipType $partnershipType): self
+    {
+        $this->partnershipType = $partnershipType;
 
         return $this;
     }
