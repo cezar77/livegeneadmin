@@ -113,3 +113,10 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, label: 'Sustainbale Development Goals Roles' }
         public: true
+
+    admin.staff_role:
+        class: App\Admin\StaffRoleAdmin
+        arguments: [~, App\Entity\StaffRole, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: 'Staff Roles' }
+        public: true
