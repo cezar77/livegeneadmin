@@ -7,18 +7,31 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class PartnershipAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('project')
-            ->add('partner')
-            ->add('startDate')
-            ->add('endDate')
-            ->add('contact')
-            ->add('partnershipType')
+            ->add('project', null, array(
+                'placeholder' => '-- please choose a project --'
+            ))
+            ->add('partner', null, array(
+                'placeholder' => '-- please choose an organisation --'
+            ))
+            ->add('startDate', DateType::class, array(
+                'widget' => 'single_text'
+            ))
+            ->add('endDate', DateType::class, array(
+                'widget' => 'single_text'
+            ))
+            ->add('contact', null, array(
+                'label' => 'Contact person(s)'
+            ))
+            ->add('partnershipType', null, array(
+                'placeholder' => '-- please choose a partnership type --'
+            ))
         ;
     }
 
