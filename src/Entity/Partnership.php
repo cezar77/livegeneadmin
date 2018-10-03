@@ -114,6 +114,7 @@ class Partnership
 
         return $this;
     }
+
     /**
      * @return Collection|SamplingActivity[]
      */
@@ -151,6 +152,7 @@ class Partnership
     public function getContact(): Collection
     {
         return $this->contact;
+    }
 
     public function addContact(Contact $contact): self
     {
@@ -166,18 +168,6 @@ class Partnership
         if ($this->contact->contains($contact)) {
             $this->contact->removeElement($contact);
         }
-
-        return $this;
-    }
-
-    public function getPartnershipType(): ?PartnershipType
-    {
-        return $this->partnershipType;
-    }
-
-    public function setPartnershipType(?PartnershipType $partnershipType): self
-    {
-        $this->partnershipType = $partnershipType;
 
         return $this;
     }
