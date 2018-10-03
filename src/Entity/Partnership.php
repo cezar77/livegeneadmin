@@ -33,17 +33,12 @@ class Partnership
     /**
      * @ORM\Column(type="date", nullable=true)
      */
-    private $start_date;
+    private $startDate;
 
     /**
      * @ORM\Column(type="date", nullable=true)
      */
-    private $end_date;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Partnership", mappedBy="partnershipType")
-     */
-    private $partnerships;
+    private $endDate;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\SamplingActivity", mappedBy="partnership")
@@ -54,6 +49,12 @@ class Partnership
      * @ORM\ManyToMany(targetEntity="App\Entity\Contact", inversedBy="partnerships")
      */
     private $contact;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\PartnershipType", inversedBy="partnerships")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $partnershipType;
 
     public function __construct()
     {
@@ -92,55 +93,24 @@ class Partnership
 
     public function getStartDate(): ?\DateTimeInterface
     {
-        return $this->start_date;
+        return $this->startDate;
     }
 
-    public function setStartDate(\DateTimeInterface $start_date): self
+    public function setStartDate(\DateTimeInterface $startDate): self
     {
-        $this->start_date = $start_date;
+        $this->startDate = $startDate;
 
         return $this;
     }
 
     public function getEndDate(): ?\DateTimeInterface
     {
-        return $this->end_date;
+        return $this->endDate;
     }
 
-    public function setEndDate(?\DateTimeInterface $end_date): self
+    public function setEndDate(?\DateTimeInterface $endDate): self
     {
-        $this->end_date = $end_date;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Partnership[]
-     */
-    public function getPartnerships(): Collection
-    {
-        return $this->partnerships;
-    }
-
-    public function addPartnership(Partnership $partnership): self
-    {
-        if (!$this->partnerships->contains($partnership)) {
-            $this->partnerships[] = $partnership;
-            $partnership->setPartnershipType($this);
-        }
-
-        return $this;
-    }
-
-    public function removePartnership(Partnership $partnership): self
-    {
-        if ($this->partnerships->contains($partnership)) {
-            $this->partnerships->removeElement($partnership);
-            // set the owning side to null (unless already changed)
-            if ($partnership->getPartnershipType() === $this) {
-                $partnership->setPartnershipType(null);
-            }
-        }
+        $this->end_date = $endDate;
 
         return $this;
     }
@@ -184,6 +154,18 @@ class Partnership
     public function setContact(?Contact $contact): self
     {
         $this->contact = $contact;
+
+        return $this;
+    }
+
+    public function getPartnershipType(): ?PartnershipType
+    {
+        return $this->partnershipType;
+    }
+
+    public function setPartnershipType(?PartnershipType $partnershipType): self
+    {
+        $this->partnershipType = $partnershipType;
 
         return $this;
     }
