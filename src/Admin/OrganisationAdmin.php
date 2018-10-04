@@ -13,10 +13,17 @@ class OrganisationAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
+        $organisation = $this->getSubject();
+
+        $fileFieldOptions = ['required' => true];
+        if ($organisation && ($webPath = $organisation->getLogoUrl())) {
+            $fileFieldOptions['help'] = '<img src="'.$webPath.'" class="admin-preview" />';
+        }
+
         $formMapper
             ->add('shortName')
             ->add('fullName')
-            ->add('logoUrl', UrlType::class)
+            ->add('logoUrl', null, $fileFieldOptions)
             ->add('country', null, array(
                 'placeholder' => '-- please choose a country --'
             ))
