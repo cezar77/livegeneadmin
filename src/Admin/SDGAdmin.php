@@ -14,12 +14,19 @@ class SDGAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
+        $sdg = $this->getSubject();
+
+        $fileFieldOptions = ['required' => true];
+        if ($sdg && ($webPath = $sdg->getLogoUrl())) {
+            $fileFieldOptions['help'] = '<img src="'.$webPath.'" class="admin-preview" />';
+        }
+
         $formMapper
             ->add('headline')
             ->add('fullName')
             ->add('color', ColorType::class)
             ->add('link', UrlType::class)
-            ->add('logoUrl', UrlType::class)
+            ->add('logoUrl', null, $fileFieldOptions)
         ;
     }
 
