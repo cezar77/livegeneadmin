@@ -55,6 +55,11 @@ class SamplingActivity
         $this->samplingDocuments = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->description ? $this->description : 'New Sampling Activity';
+    }
+
     public function getId(): ?int
     {
         return $this->id;

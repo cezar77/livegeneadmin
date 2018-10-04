@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Application\Sonata\MediaBundle\Entity\Media;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -27,12 +28,11 @@ class SamplingDocumentation
      * @ORM\ManyToOne(targetEntity="App\Entity\SamplingDocumentType", inversedBy="samplingDocuments")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $documentType;
+    private $samplingDocumentType;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="Please upload a document as PDF file")
-     * @Assert\File(mimeTypes={ "application/pdf" })
+     * @ORM\ManyToOne(targetEntity="App\Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"}, fetch="LAZY")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $document;
 
@@ -55,22 +55,22 @@ class SamplingDocumentation
 
     public function getSamplingDocumentType(): ?SamplingDocumentType
     {
-        return $this->documentType;
+        return $this->samplingDocumentType;
     }
 
-    public function setSamplingDocumentType(?SamplingDocumentType $documentType): self
+    public function setSamplingDocumentType(?SamplingDocumentType $samplingDocumentType): self
     {
-        $this->documentType = $documentType;
+        $this->samplingDocumentType = $samplingDocumentType;
 
         return $this;
     }
 
-    public function getDocument(): ?string
+    public function getDocument(): ?Media
     {
         return $this->document;
     }
 
-    public function setDocument(string $document): self
+    public function setDocument(?Media $document): self
     {
         $this->document = $document;
 
