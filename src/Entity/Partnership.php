@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PartnershipRepository")
@@ -32,11 +33,17 @@ class Partnership
 
     /**
      * @ORM\Column(type="date", nullable=true)
+     * @Assert\Date()
      */
     private $startDate;
 
     /**
      * @ORM\Column(type="date", nullable=true)
+     * @Assert\Date()
+     * @Assert\Expression(
+     *     "this.getStartDate() < this.getEndDate()",
+     *     message="The end date must be after the start date"
+     * )
      */
     private $endDate;
 
@@ -47,6 +54,7 @@ class Partnership
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Contact", inversedBy="partnerships")
+     * @Assert\NotBlank()
      */
     private $contact;
 
@@ -101,7 +109,11 @@ class Partnership
 
     public function getStartDate(): ?\DateTimeInterface
     {
-        return $this->startDate;
+        if ($this->id) {
+            return $this->startDate ? $this->startDate : $this->project->getStartDate();
+        } else {
+            return $this->startDate;
+        }
     }
 
     public function setStartDate(?\DateTimeInterface $startDate): self
@@ -113,7 +125,11 @@ class Partnership
 
     public function getEndDate(): ?\DateTimeInterface
     {
-        return $this->endDate;
+        if ($this->id) {
+            return $this->endDate ? $this->endDate : $this->project->getEndDate();
+        } else {
+            return $this->endDate;
+        }
     }
 
     public function setEndDate(?\DateTimeInterface $endDate): self

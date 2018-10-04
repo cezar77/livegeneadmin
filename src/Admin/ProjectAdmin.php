@@ -28,8 +28,14 @@ class ProjectAdmin extends AbstractAdmin
                 ->add('donorProjectName')
             ->end()
             ->with('Project length', array('class' => 'col-md-6'))
-                ->add('startDate', DatePickerType::class)
-                ->add('endDate', DatePickerType::class)
+                ->add('startDate', DatePickerType::class, [
+                    'dp_pick_time' => false,
+                    'format' => DateType::HTML5_FORMAT
+                ])
+                ->add('endDate', DatePickerType::class, [
+                    'dp_pick_time' => false,
+                    'format' => DateType::HTML5_FORMAT
+                ])
             ->end()
             ->with('Project features', array('class' => 'col-md-6'))
                 ->add('status', null, array(

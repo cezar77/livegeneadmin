@@ -8,6 +8,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Sonata\CoreBundle\Form\Type\DatePickerType;
 
 class PartnershipAdmin extends AbstractAdmin
 {
@@ -20,12 +21,16 @@ class PartnershipAdmin extends AbstractAdmin
             ->add('partner', null, array(
                 'placeholder' => '-- please choose an organisation --'
             ))
-            ->add('startDate', DateType::class, array(
-                'widget' => 'single_text'
-            ))
-            ->add('endDate', DateType::class, array(
-                'widget' => 'single_text'
-            ))
+            ->add('startDate', DatePickerType::class, [
+                'required' => false,
+                'dp_pick_time' => false,
+                'format' => DateType::HTML5_FORMAT
+            ])
+            ->add('endDate', DatePickerType::class, [
+                'required' => false,
+                'dp_pick_time' => false,
+                'format' => DateType::HTML5_FORMAT
+            ])
             ->add('contact', null, array(
                 'label' => 'Contact person(s)'
             ))
