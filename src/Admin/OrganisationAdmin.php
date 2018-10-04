@@ -48,7 +48,10 @@ class OrganisationAdmin extends AbstractAdmin
         $showMapper
             ->add('shortName')
             ->add('fullName')
-            ->add('logoUrl')
+            ->add('logoUrl', 'sonata_media_type', array(
+                'provider' => 'sonata.media.provider.image',
+                'context' => 'default'
+            ))
             ->add('country')
         ;
     }

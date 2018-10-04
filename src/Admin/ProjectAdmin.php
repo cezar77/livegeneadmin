@@ -7,32 +7,44 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Sonata\CoreBundle\Form\Type\DatePickerType;
 
 class ProjectAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('ilriCode', null, array(
-                'label' => 'ILRI code'
-            ))
-            ->add('fullName')
-            ->add('shortName')
-            ->add('principalInvestigator', null, array(
-                'placeholder' => '-- please choose a person --'
-            ))
-            ->add('projectsGroup')
-            ->add('donorReference')
-            ->add('donorProjectName')
-            ->add('startDate', DateType::class, array(
-                'widget' => 'single_text'
-            ))
-            ->add('endDate', DateType::class, array(
-                'widget' => 'single_text'
-            ))
-            ->add('status')
-            ->add('capacityDevelopment')
+            ->with('Project description')
+                ->add('ilriCode', null, array(
+                    'label' => 'ILRI code'
+                ))
+                ->add('fullName')
+                ->add('shortName')
+                ->add('principalInvestigator', null, array(
+                    'placeholder' => '-- please choose a person --'
+                ))
+                ->add('projectsGroup')
+                ->add('donorReference')
+                ->add('donorProjectName')
+            ->end()
+            ->with('Project length', array('class' => 'col-md-6'))
+                ->add('startDate', DatePickerType::class)
+                ->add('endDate', DatePickerType::class)
+            ->end()
+            ->with('Project features', array('class' => 'col-md-6'))
+                ->add('status', null, array(
+                    'attr' => array(
+                        'min' => 0,
+                        'max' => 100,
+                    )
+                ))
+                ->add('capacityDevelopment', null, array(
+                    'attr' => array(
+                        'min' => 0,
+                        'max' => 100,
+                    )
+                ))
+            ->end()
         ;
     }
 

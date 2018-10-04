@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProjectRepository")
@@ -66,11 +67,23 @@ class Project
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Range(
+     *      min = 0,
+     *      max = 100,
+     *      minMessage = "The value must be at least {{ limit }}.",
+     *      maxMessage = "The value must not be greater than {{ limit }}."
+     * )
      */
     private $status;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Range(
+     *      min = 0,
+     *      max = 100,
+     *      minMessage = "The value must be at least {{ limit }}.",
+     *      maxMessage = "The value must not be greater than {{ limit }}."
+     * )
      */
     private $capacityDevelopment;
 
@@ -110,7 +123,7 @@ class Project
 
     public function __toString()
     {
-        return $this->id ? $this->fullName : '';
+        return $this->fullName ? $this->fullName : 'New Organisation';
     }
 
     public function getId(): ?int
