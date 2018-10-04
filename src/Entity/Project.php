@@ -21,27 +21,32 @@ class Project
 
     /**
      * @ORM\Column(type="string", length=20)
+     * @Assert\NotBlank()
      */
     private $ilriCode;
 
     /**
      * @ORM\Column(type="string", length=200)
+     * @Assert\NotBlank()
      */
     private $fullName;
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\NotBlank()
      */
     private $shortName;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Staff", inversedBy="projects")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank()
      */
     private $principalInvestigator;
 
     /**
      * @ORM\Column(type="string", length=20)
+     * @Assert\NotBlank()
      */
     private $projectsGroup;
 
@@ -57,11 +62,17 @@ class Project
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\Date()
      */
     private $startDate;
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\Date()
+     * @Assert\Expression(
+     *     "this.getStartDate() < this.getEndDate()",
+     *     message="The end date must be after the start date"
+     * )
      */
     private $endDate;
 
