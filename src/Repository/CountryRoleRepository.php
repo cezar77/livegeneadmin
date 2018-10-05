@@ -19,6 +19,19 @@ class CountryRoleRepository extends ServiceEntityRepository
         parent::__construct($registry, CountryRole::class);
     }
 
+    /**
+     * @return CountryRole[] Returns an array of CountryRole objects
+     */
+    public function findByProject($value)
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.project = :project')
+            ->setParameter('project', $value)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 //    /**
 //     * @return CountryRole[] Returns an array of CountryRole objects
 //     */

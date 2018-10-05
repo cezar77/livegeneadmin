@@ -19,6 +19,19 @@ class SDGRoleRepository extends ServiceEntityRepository
         parent::__construct($registry, SDGRole::class);
     }
 
+    /**
+     * @return SDGRole[] Returns an array of SDGRole objects
+     */
+    public function findByPerson($value)
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.project = :project')
+            ->setParameter('project', $value)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 //    /**
 //     * @return SDGRole[] Returns an array of SDGRole objects
 //     */
