@@ -20,7 +20,7 @@ class PartnershipType
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=30i, unique=true)
+     * @ORM\Column(type="string", length=30, unique=true)
      * @Assert\NotBlank()
      */
     private $description;
