@@ -3,10 +3,14 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use App\Validator\Constraints as CustomAssert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CountryRoleRepository")
+ * @UniqueEntity(
+ *     fields={"project", "country"}
+ * )
  * @CustomAssert\Percent()
  */
 class CountryRole

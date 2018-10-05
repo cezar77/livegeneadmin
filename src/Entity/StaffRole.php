@@ -3,10 +3,14 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use App\Validator\Constraints as CustomAssert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\StaffRoleRepository")
+ * @UniqueEntity(
+ *     fields={"project", "person"}
+ * )
  * @CustomAssert\Percent()
  */
 class StaffRole
@@ -34,6 +38,14 @@ class StaffRole
      * @ORM\Column(type="integer")
      */
     private $percent;
+
+    public function __toString()
+    {
+        return $this->id
+            ? sprintf('%s - %s', $this->project, $this->person)
+            : 'New StaffRole'
+        ;
+    }
 
     public function getId(): ?int
     {

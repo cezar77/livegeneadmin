@@ -32,7 +32,8 @@ class PartnershipAdmin extends AbstractAdmin
                 'format' => DateType::HTML5_FORMAT
             ])
             ->add('contact', null, array(
-                'label' => 'Contact person(s)'
+                'label' => 'Contact person(s)',
+                'required' => true
             ))
             ->add('partnershipType', null, array(
                 'placeholder' => '-- please choose a partnership type --'
