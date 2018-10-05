@@ -16,10 +16,10 @@ class StaffAdmin extends AbstractAdmin
         $formMapper
             ->add('username')
             ->add('firstName')
-	    ->add('lastName')
-	    ->add('homeProgram')
-	    ->add('email', EmailType::class)
-	;
+            ->add('lastName')
+            ->add('homeProgram')
+            ->add('email', EmailType::class)
+    ;
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
@@ -32,15 +32,15 @@ class StaffAdmin extends AbstractAdmin
         $listMapper->addIdentifier('id')
             ->add('username')
             ->add('firstName')
-	    ->add('lastName')
-	    ->add('homeProgram')
-	    ->add('email')
+            ->add('lastName')
+            ->add('homeProgram')
+            ->add('email')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
                     'edit' => array(),
                 )
-	    ))
+        ))
         ;
     }
 
@@ -49,9 +49,9 @@ class StaffAdmin extends AbstractAdmin
         $showMapper
             ->add('username')
             ->add('firstName')
-	    ->add('lastName')
-	    ->add('homeProgram')
-	    ->add('email')
+            ->add('lastName')
+            ->add('homeProgram')
+            ->add('email')
         ;
     }
 }
