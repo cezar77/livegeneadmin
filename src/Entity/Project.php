@@ -72,7 +72,7 @@ class Project
      * @ORM\Column(type="date")
      * @Assert\Date()
      * @Assert\Expression(
-     *     "this.getStartDate() >= this.getEndDate()",
+     *     "this.getStartDate() < this.getEndDate()",
      *     message="The end date must be after the start date"
      * )
      */
