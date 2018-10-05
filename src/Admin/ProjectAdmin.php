@@ -7,7 +7,9 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Sonata\CoreBundle\Form\Type\DatePickerType;
+use Sonata\AdminBundle\Form\Type\ModelListType;
 
 class ProjectAdmin extends AbstractAdmin
 {
@@ -20,9 +22,7 @@ class ProjectAdmin extends AbstractAdmin
                 ))
                 ->add('fullName')
                 ->add('shortName')
-                ->add('principalInvestigator', null, array(
-                    'placeholder' => '-- please choose a person --'
-                ))
+                ->add('principalInvestigator', ModelListType::class)
                 ->add('projectsGroup')
                 ->add('donorReference')
                 ->add('donorProjectName')

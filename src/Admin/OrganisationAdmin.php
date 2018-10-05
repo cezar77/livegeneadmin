@@ -7,6 +7,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\AdminBundle\Form\Type\ModelListType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 
 class OrganisationAdmin extends AbstractAdmin
@@ -24,9 +25,7 @@ class OrganisationAdmin extends AbstractAdmin
             ->add('shortName')
             ->add('fullName')
             ->add('logoUrl', null, $fileFieldOptions)
-            ->add('country', null, array(
-                'placeholder' => '-- please choose a country --'
-            ))
+            ->add('country', ModelListType::class)
         ;
     }
 

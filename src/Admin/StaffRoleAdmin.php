@@ -7,18 +7,15 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\AdminBundle\Form\Type\ModelListType;
 
 class StaffRoleAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('project', null, array(
-                'placeholder' => '-- please choose a project --'
-            ))
-            ->add('person', null, array(
-                'placeholder' => '-- please choose a person --'
-            ))
+            ->add('project', ModelListType::class)
+            ->add('person', ModelListType::class)
             ->add('percent')
         ;
     }

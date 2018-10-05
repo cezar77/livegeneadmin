@@ -7,18 +7,15 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\AdminBundle\Form\Type\ModelListType;
 
 class SDGRoleAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('project', null, array(
-                'placeholder' => '-- please choose a project --'
-            ))
-            ->add('sdg', null, array(
-                'placeholder' => '-- please choose a SDG --'
-            ))
+            ->add('project', ModelListType::class)
+            ->add('sdg', ModelListType::class)
             ->add('percent')
         ;
     }

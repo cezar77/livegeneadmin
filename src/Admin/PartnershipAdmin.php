@@ -9,18 +9,15 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Sonata\CoreBundle\Form\Type\DatePickerType;
+use Sonata\AdminBundle\Form\Type\ModelListType;
 
 class PartnershipAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('project', null, array(
-                'placeholder' => '-- please choose a project --'
-            ))
-            ->add('partner', null, array(
-                'placeholder' => '-- please choose an organisation --'
-            ))
+            ->add('project', ModelListType::class)
+            ->add('partner', ModelListType::class)
             ->add('startDate', DatePickerType::class, [
                 'required' => false,
                 'dp_pick_time' => false,
@@ -33,11 +30,9 @@ class PartnershipAdmin extends AbstractAdmin
             ])
             ->add('contact', null, array(
                 'label' => 'Contact person(s)',
-                'required' => true
+                'required' => true,
             ))
-            ->add('partnershipType', null, array(
-                'placeholder' => '-- please choose a partnership type --'
-            ))
+            ->add('partnershipType', ModelListType::class)
         ;
     }
 
