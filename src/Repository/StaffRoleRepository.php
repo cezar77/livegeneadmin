@@ -19,6 +19,19 @@ class StaffRoleRepository extends ServiceEntityRepository
         parent::__construct($registry, StaffRole::class);
     }
 
+    /**
+     * @return StaffRole[] Returns an array of StaffRole objects
+     */
+    public function findByPerson($value)
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.person = :person')
+            ->setParameter('person', $value)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 //    /**
 //     * @return StaffRole[] Returns an array of StaffRole objects
 //     */
