@@ -11,6 +11,8 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
 class StaffAdmin extends AbstractAdmin
 {
+    public $supportsPreviewMode = true;
+
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
