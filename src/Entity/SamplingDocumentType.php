@@ -29,7 +29,7 @@ class SamplingDocumentType
     private $longName;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\SamplingDocumentation", mappedBy="documentType")
+     * @ORM\OneToMany(targetEntity="App\Entity\SamplingDocumentation", mappedBy="samplingDocumentType")
      */
     private $samplingDocuments;
 

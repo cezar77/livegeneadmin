@@ -54,7 +54,7 @@ class Staff
     private $email;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Project", mappedBy="principal_investigator")
+     * @ORM\OneToMany(targetEntity="App\Entity\Project", mappedBy="principalInvestigator")
      */
     private $projects;
 

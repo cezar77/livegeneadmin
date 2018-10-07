@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProjectRepository")
@@ -43,6 +44,7 @@ class Project
      * @ORM\ManyToOne(targetEntity="App\Entity\Staff", inversedBy="projects")
      * @ORM\JoinColumn(nullable=false)
      * @Assert\NotBlank()
+     * @JMS\MaxDepth(1)
      */
     private $principalInvestigator;
 
@@ -102,26 +104,31 @@ class Project
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\SDGRole", mappedBy="project")
+     * @JMS\Exclude()
      */
     private $SDGRoles;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\CountryRole", mappedBy="project")
+     * @JMS\Exclude()
      */
     private $countryRoles;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\StaffRole", mappedBy="project")
+     * @JMS\Exclude()
      */
     private $staffRoles;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Partnership", mappedBy="project")
+     * @JMS\Exclude()
      */
     private $partnerships;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\SamplingActivity", mappedBy="project")
+     * @JMS\Exclude()
      */
     private $samplingActivities;
 
