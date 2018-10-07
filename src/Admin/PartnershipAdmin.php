@@ -51,12 +51,30 @@ class PartnershipAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper->addIdentifier('id')
-            ->add('project')
-            ->add('partner')
+            ->add('project', null, [
+                'sortable' => true,
+                'sort_field_mapping' => ['fieldName' => 'fullName'],
+                'sort_parent_association_mappings' => [
+                    ['fieldName' => 'project']
+                ]
+            ])
+            ->add('partner', null, [
+                'sortable' => true,
+                'sort_field_mapping' => ['fieldName' => 'fullName'],
+                'sort_parent_association_mappings' => [
+                    ['fieldName' => 'partner']
+                ]
+            ])
             ->add('startDate')
             ->add('endDate')
             ->add('contact')
-            ->add('partnershipType')
+            ->add('partnershipType', null, [
+                'sortable' => true,
+                'sort_field_mapping' => ['fieldName' => 'description'],
+                'sort_parent_association_mappings' => [
+                    ['fieldName' => 'partnershipType']
+                ]
+            ])
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),

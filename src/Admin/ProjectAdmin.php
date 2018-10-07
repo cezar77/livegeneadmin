@@ -63,7 +63,7 @@ class ProjectAdmin extends AbstractAdmin
 
     protected function configureListFields(ListMapper $listMapper)
     {
-        $listMapper->addIdentifier('id')
+        $listMapper->addIdentifier('ilriCode', null, ['label' => 'ILRI code'])
             ->add('shortName')
             ->add('fullName')
             ->add('_action', 'actions', array(

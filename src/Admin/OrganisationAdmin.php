@@ -39,7 +39,18 @@ class OrganisationAdmin extends AbstractAdmin
         $listMapper->addIdentifier('id')
             ->add('shortName')
             ->add('fullName')
-            ->add('country')
+            ->add('logoUrl', null, [
+                'label' => 'Logo',
+                'sortable' => false,
+                'template' => 'SonataAdmin/CRUD/organisation_list_logo.html.twig'
+            ])
+            ->add('country', null, [
+                'sortable' => true,
+                'sort_field_mapping' => ['fieldName' => 'country'],
+                'sort_parent_association_mappings' => [
+                    ['fieldName' => 'country']
+                ]
+            ])
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
@@ -54,10 +65,10 @@ class OrganisationAdmin extends AbstractAdmin
         $showMapper
             ->add('shortName')
             ->add('fullName')
-            ->add('logoUrl', 'sonata_media_type', array(
-                'provider' => 'sonata.media.provider.image',
-                'context' => 'default'
-            ))
+            ->add('logoUrl', null, [
+                'label' => 'Logo',
+                'template' => 'SonataAdmin/CRUD/organisation_show_logo.html.twig'
+            ])
             ->add('country')
         ;
     }

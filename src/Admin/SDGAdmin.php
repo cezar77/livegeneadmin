@@ -39,7 +39,9 @@ class SDGAdmin extends AbstractAdmin
     {
         $listMapper->addIdentifier('id')
             ->add('headline')
-            ->add('color')
+            ->add('color', null, [
+                'template' => 'SonataAdmin/CRUD/sdg_list_color.html.twig'
+            ])
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
@@ -54,8 +56,16 @@ class SDGAdmin extends AbstractAdmin
         $showMapper
             ->add('headline')
             ->add('fullName')
-            ->add('color')
-            ->add('link')
+            ->add('color', null, [
+                'template' => 'SonataAdmin/CRUD/sdg_show_color.html.twig'
+            ])
+            ->add('link', null, [
+                'template' => 'SonataAdmin/CRUD/sdg_show_link.html.twig'
+            ])
+            ->add('logoUrl', null, [
+                'label' => 'Logo',
+                'template' => 'SonataAdmin/CRUD/sdg_show_logo.html.twig'
+            ])
         ;
     }
 }
