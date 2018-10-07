@@ -17,8 +17,8 @@ class StaffService
 
     public static function getTotalPercentForStaff(Staff $staff)
     {
-        $repo = $this->em->getRepository(Staff::class);
-        $person = $repo->findOneById($staff->getId());
+        $repository = $this->em->getRepository(Staff::class);
+        $person = $repository->findOneById($staff->getId());
         $roles = $person->getStaffRoles();
 
         $totalPercent = 0;
