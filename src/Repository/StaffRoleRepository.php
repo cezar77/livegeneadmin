@@ -32,6 +32,19 @@ class StaffRoleRepository extends ServiceEntityRepository
         ;
     }
 
+    /**
+     * @return int Return the total percent for staff person
+     */
+    public function getTotalPercentForPerson($value)
+    {
+        $roles = $this->findByPerson($value);
+        $totalPercent = 0;
+        foreach ($roles as $role) {
+            $totalPercent += $role->getPercent();
+        }
+        return $totalPercent;
+    }
+
 //    /**
 //     * @return StaffRole[] Returns an array of StaffRole objects
 //     */
