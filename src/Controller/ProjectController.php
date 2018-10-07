@@ -23,4 +23,22 @@ class ProjectController extends FOSRestController
 
         return View::create($data, Response::HTTP_OK);
     }
+
+    /**
+     * Retrieve a Project resource
+     * @Rest\Get("/projects/{ilriCode}")
+     */
+    public function getProject($ilriCode): View
+    {
+        $repository = $this->getDoctrine()->getRepository(Project::class);
+
+        $data = $repository->findByIlriCode($ilriCode);
+
+        if (!$data) {
+            throw new EntityNotFoundException('Project with ILRI code '.$ilriCode.' does not exist!');
+        }
+
+        return View::create($data, Response::HTTP_OK);
+    }
+
 }
