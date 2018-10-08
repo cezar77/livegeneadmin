@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\StaffRepository")
@@ -55,11 +56,13 @@ class Staff
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Project", mappedBy="principalInvestigator")
+     * @JMS\Exclude()
      */
     private $projects;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\StaffRole", mappedBy="person")
+     * @JMS\Exclude()
      */
     private $staffRoles;
 

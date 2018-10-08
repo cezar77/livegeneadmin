@@ -122,7 +122,7 @@ class Project
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Partnership", mappedBy="project")
-     * @JMS\Exclude()
+     * @JMS\MaxDepth(3)
      */
     private $partnerships;
 
