@@ -8,38 +8,43 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+        #main:
+        #    pattern:             .*
+        #    context:             user
+        #    form_login:
+        #        provider:       fos_userbundle
+        #        login_path:     /login
+        #        use_forward:    false
+        #        check_path:     /login_check
+        #        failure_path:   null
+        #        #always_use_default_target_path: true
+        #        #default_target_path: homepage
+        #    logout: true
+        #    anonymous: true
+
+        #    # activate different ways to authenticate
+
+        #    # http_basic: true
+        #    # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+
+        #    # form_login: true
+        #    # https://symfony.com/doc/current/security/form_login_setup.html
         admin:
             pattern:            /admin(.*)
             context:            user
             form_login:
                 provider:       fos_userbundle
-                login_path:     /admin/login
+                login_path:     sonata_user_admin_security_login
                 use_forward:    false
-                check_path:     /admin/login_check
-                failure_path:   null
+                check_path:     sonata_user_admin_security_check
+                failure_path:   sonata_user_admin_security_login
+                always_use_default_target_path: true
+                default_target_path: sonata_admin_dashboard
             logout:
-                path:           /admin/logout
-                target:         /admin/login
+                path:           sonata_user_admin_security_logout
+                target:         sonata_user_admin_security_login
             anonymous:          true
-        main:
-            pattern:             .*
-            context:             user
-            form_login:
-                provider:       fos_userbundle
-                login_path:     /login
-                use_forward:    false
-                check_path:     /login_check
-                failure_path:   null
-            logout:             true
-            anonymous: true
-
-            # activate different ways to authenticate
-
-            # http_basic: true
-            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
-
-            # form_login: true
-            # https://symfony.com/doc/current/security/form_login_setup.html
+            #switch_user:        true
 
     role_hierarchy:
         ROLE_ADMIN:       [ROLE_USER, ROLE_SONATA_ADMIN]
@@ -52,10 +57,13 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+
     encoders:
         FOS\UserBundle\Model\UserInterface: sha512
+
     #acl:
     #    connection: default
+
     access_control:
         # Admin login page needs to be accessed without credential
         - { path: ^/admin/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
