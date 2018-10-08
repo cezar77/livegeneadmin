@@ -1,0 +1,10 @@
+doctrine:
+    dbal:
+        driver: 'pdo_sqlite'
+        server_version: '3'
+        charset: utf8mb4
+        default_table_options:
+            charset: utf8mb4
+            collate: utf8mb4_unicode_ci
+
+        url: 'sqlite:///%kernel.project_dir%/var/test.db3'
