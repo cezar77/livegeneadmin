@@ -21,6 +21,7 @@
     "require-dev": {
         "symfony/dotenv": "*",
         "symfony/maker-bundle": "^1.7",
+        "symfony/phpunit-bridge": "*",
         "symfony/var-dumper": "*",
         "symfony/web-server-bundle": "*"
     },
