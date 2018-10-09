@@ -87,4 +87,14 @@ class StaffRole
 
         return $this;
     }
+
+    public function getTotalPercent()
+    {
+        $roles = $this->person->getStaffRoles();
+        $totalPercent = 0;
+        foreach ($roles as $role) {
+            $totalPercent += $role->getPercent();
+        }
+        return $totalPercent;
+    }
 }

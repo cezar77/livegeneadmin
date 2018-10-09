@@ -46,6 +46,7 @@ class StaffRoleAdmin extends AbstractAdmin
             ->add('project')
             ->add('person')
             ->add('percent')
+            ->add('totalPercent')
         ;
     }
 }
