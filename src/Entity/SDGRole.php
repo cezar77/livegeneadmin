@@ -80,4 +80,14 @@ class SDGRole
 
         return $this;
     }
+
+    public function getTotalPercent()
+    {
+        $roles = $this->project->getSDGRoles();
+        $totalPercent = 0;
+        foreach ($roles as $role) {
+            $totalPercent += $role->getPercent();
+        }
+        return $totalPercent;
+    }
 }

@@ -46,6 +46,7 @@ class SDGRoleAdmin extends AbstractAdmin
             ->add('project')
             ->add('sdg')
             ->add('percent')
+            ->add('totalPercent')
         ;
     }
 }

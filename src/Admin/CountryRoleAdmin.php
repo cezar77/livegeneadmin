@@ -46,6 +46,7 @@ class CountryRoleAdmin extends AbstractAdmin
             ->add('project')
             ->add('country')
             ->add('percent')
+            ->add('totalPercent')
         ;
     }
 }

@@ -7,8 +7,6 @@ use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\StaffRole;
-use App\Entity\CountryRole;
-use App\Entity\SDGRole;
 
 class PercentValidator extends ConstraintValidator
 {
@@ -21,27 +19,12 @@ class PercentValidator extends ConstraintValidator
 
     public function validate($entity, Constraint $constraint)
     {
+        $totalPercent = $entity->getTotalPercent();
+
         if ($entity instanceof StaffRole) {
             $subject = $entity->getPerson();
-            $repo = $this->em->getRepository(StaffRole::class);
-            $roles = $repo->findByPerson($subject->getId());
-        }
-
-        if ($entity instanceof CountryRole) {
+        } else {
             $subject = $entity->getProject();
-            $repo = $this->em->getRepository(CountryRole::class);
-            $roles = $repo->findByProject($subject->getId());
-        }
-
-        if ($entity instanceof SDGRole) {
-            $subject = $entity->getProject();
-            $repo = $this->em->getRepository(SDGRole::class);
-            $roles = $repo->findByProject($subject->getId());
-        }
-
-        $totalPercent = 0;
-        foreach ($roles as $role) {
-            $totalPercent += $role->getPercent();
         }
 
         if ($totalPercent > 100) {
