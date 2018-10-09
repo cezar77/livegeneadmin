@@ -19,32 +19,6 @@ class StaffRoleRepository extends ServiceEntityRepository
         parent::__construct($registry, StaffRole::class);
     }
 
-    /**
-     * @return StaffRole[] Returns an array of StaffRole objects
-     */
-    public function findByPerson($value)
-    {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.person = :person')
-            ->setParameter('person', $value)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-
-    /**
-     * @return int Return the total percent for staff person
-     */
-    public function getTotalPercentForPerson($value)
-    {
-        $roles = $this->findByPerson($value);
-        $totalPercent = 0;
-        foreach ($roles as $role) {
-            $totalPercent += $role->getPercent();
-        }
-        return $totalPercent;
-    }
-
 //    /**
 //     * @return StaffRole[] Returns an array of StaffRole objects
 //     */
