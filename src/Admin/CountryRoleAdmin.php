@@ -17,7 +17,12 @@ class CountryRoleAdmin extends AbstractAdmin
         $formMapper
             ->add('project', ModelListType::class)
             ->add('country', ModelListType::class)
-            ->add('percent')
+            ->add('percent', IntegerType::class, [
+                'attr' => [
+                    'min' => 0,
+                    'max' => $this->getSubject()->getAvailablePercents()
+                ]
+            ])
             ->add('totalPercent', IntegerType::class, [
                 'required' => false,
                 'disabled' => true,

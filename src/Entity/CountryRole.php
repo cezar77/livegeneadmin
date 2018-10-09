@@ -93,4 +93,13 @@ class CountryRole
         }
         return $totalPercent;
     }
+
+    public function getAvailablePercents(): int
+    {
+        if (!$this->id) {
+            return 100;
+        }
+
+        return $this->percent + 100 - $this->getTotalPercent();
+    }
 }
