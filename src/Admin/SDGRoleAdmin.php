@@ -8,6 +8,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Form\Type\ModelListType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class SDGRoleAdmin extends AbstractAdmin
 {
@@ -17,6 +18,10 @@ class SDGRoleAdmin extends AbstractAdmin
             ->add('project', ModelListType::class)
             ->add('sdg', ModelListType::class)
             ->add('percent')
+            ->add('totalPercent', IntegerType::class, [
+                'required' => false,
+                'disabled' => true,
+            ])
         ;
     }
 

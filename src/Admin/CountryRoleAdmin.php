@@ -8,6 +8,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Form\Type\ModelListType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class CountryRoleAdmin extends AbstractAdmin
 {
@@ -17,6 +18,10 @@ class CountryRoleAdmin extends AbstractAdmin
             ->add('project', ModelListType::class)
             ->add('country', ModelListType::class)
             ->add('percent')
+            ->add('totalPercent', IntegerType::class, [
+                'required' => false,
+                'disabled' => true,
+            ])
         ;
     }
 

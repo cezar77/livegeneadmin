@@ -80,8 +80,12 @@ class CountryRole
         return $this;
     }
 
-    public function getTotalPercent()
+    public function getTotalPercent(): int
     {
+        if (!$this->id) {
+            return 0;
+        }
+
         $roles = $this->project->getCountryRoles();
         $totalPercent = 0;
         foreach ($roles as $role) {
