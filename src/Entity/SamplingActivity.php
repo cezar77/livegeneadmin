@@ -25,10 +25,10 @@ class SamplingActivity
     private $project;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Partnership", inversedBy="samplingActivities")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Organisation", inversedBy="samplingActivities")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $partnership;
+    private $partner;
 
     /**
      * @ORM\Column(type="string", length=200)
@@ -77,14 +77,14 @@ class SamplingActivity
         return $this;
     }
 
-    public function getPartnership(): ?Partnership
+    public function getPartner(): ?Organisation
     {
-        return $this->partnership;
+        return $this->partner;
     }
 
-    public function setPartnership(?Partnership $partnership): self
+    public function setPartner(?Organisation $partner): self
     {
-        $this->partnership = $partnership;
+        $this->partner = $partner;
 
         return $this;
     }

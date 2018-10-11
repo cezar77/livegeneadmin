@@ -17,8 +17,8 @@ class SamplingActivityAdmin extends AbstractAdmin
             ->add('project', null, array(
                 'placeholder' => '-- please choose a project --'
             ))
-            ->add('partnership', null, array(
-                'placeholder' => '-- please choose a partnership --'
+            ->add('partner', null, array(
+                'placeholder' => '-- please choose a partner --'
             ))
             ->add('description')
             ->add('startDate', DateType::class, array(
@@ -39,7 +39,7 @@ class SamplingActivityAdmin extends AbstractAdmin
     {
         $listMapper->addIdentifier('id')
             ->add('project')
-            ->add('partnership')
+            ->add('partner')
             ->add('description')
             ->add('startDate')
             ->add('endDate')
@@ -56,7 +56,7 @@ class SamplingActivityAdmin extends AbstractAdmin
     {
         $showMapper
             ->add('project')
-            ->add('partnership')
+            ->add('partner')
             ->add('description')
             ->add('startDate')
             ->add('endDate')

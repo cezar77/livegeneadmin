@@ -51,11 +51,6 @@ class Partnership
     private $endDate;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\SamplingActivity", mappedBy="partnership")
-     */
-    private $samplingActivities;
-
-    /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Contact", inversedBy="partnerships")
      * @Assert\NotBlank()
      */
@@ -138,37 +133,6 @@ class Partnership
     public function setEndDate(?\DateTimeInterface $endDate): self
     {
         $this->endDate = $endDate;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|SamplingActivity[]
-     */
-    public function getSamplingActivities(): Collection
-    {
-        return $this->samplingActivities;
-    }
-
-    public function addSamplingActivity(SamplingActivity $samplingActivity): self
-    {
-        if (!$this->samplingActivities->contains($samplingActivity)) {
-            $this->samplingActivities[] = $samplingActivity;
-            $samplingActivity->setPartnership($this);
-        }
-
-        return $this;
-    }
-
-    public function removeSamplingActivity(SamplingActivity $samplingActivity): self
-    {
-        if ($this->samplingActivities->contains($samplingActivity)) {
-            $this->samplingActivities->removeElement($samplingActivity);
-            // set the owning side to null (unless already changed)
-            if ($samplingActivity->getPartnership() === $this) {
-                $samplingActivity->setPartnership(null);
-            }
-        }
 
         return $this;
     }

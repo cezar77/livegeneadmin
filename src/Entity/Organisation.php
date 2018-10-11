@@ -52,6 +52,11 @@ class Organisation
      */
     private $partnerships;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\SamplingActivity", mappedBy="partnership")
+     */
+    private $samplingActivities;
+
     public function __construct()
     {
         $this->partnerships = new ArrayCollection();
@@ -143,6 +148,37 @@ class Organisation
             // set the owning side to null (unless already changed)
             if ($partnership->getPartner() === $this) {
                 $partnership->setPartner(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|SamplingActivity[]
+     */
+    public function getSamplingActivities(): Collection
+    {
+        return $this->samplingActivities;
+    }
+
+    public function addSamplingActivity(SamplingActivity $samplingActivity): self
+    {
+        if (!$this->samplingActivities->contains($samplingActivity)) {
+            $this->samplingActivities[] = $samplingActivity;
+            $samplingActivity->setPartnership($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSamplingActivity(SamplingActivity $samplingActivity): self
+    {
+        if ($this->samplingActivities->contains($samplingActivity)) {
+            $this->samplingActivities->removeElement($samplingActivity);
+            // set the owning side to null (unless already changed)
+            if ($samplingActivity->getPartnership() === $this) {
+                $samplingActivity->setPartnership(null);
             }
         }
 
