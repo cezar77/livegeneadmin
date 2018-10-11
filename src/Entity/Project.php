@@ -65,6 +65,21 @@ class Project
     private $donorProjectName;
 
     /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $totalProjectValue;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $totalIlriValue;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $totalLivegeneValue;
+
+    /**
      * @ORM\Column(type="date")
      * @Assert\Date()
      */
@@ -231,6 +246,42 @@ class Project
     public function setDonorProjectName(?string $donorProjectName): self
     {
         $this->donorProjectName = $donorProjectName;
+
+        return $this;
+    }
+
+    public function getTotalProjectValue(): ?int
+    {
+        return $this->totalProjectValue;
+    }
+
+    public function setTotalProjectValue(?int $totalProjectValue): self
+    {
+        $this->totalProjectValue = $totalProjectValue;
+
+        return $this;
+    }
+
+    public function getTotalIlriValue(): ?int
+    {
+        return $this->totalIlriValue;
+    }
+
+    public function setTotalIlriValue(?int $totalIlriValue): self
+    {
+        $this->totalIlriValue = $totalIlriValue;
+
+        return $this;
+    }
+
+    public function getTotalLivegeneValue(): ?int
+    {
+        return $this->totalLivegeneValue;
+    }
+
+    public function setTotalLivegeneValue(?int $totalLivegeneValue): self
+    {
+        $this->totalLivegeneValue = $totalLivegeneValue;
 
         return $this;
     }
