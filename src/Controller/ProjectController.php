@@ -18,7 +18,7 @@ class ProjectController extends FOSRestController
      * @Rest\Get("/projects")
      * @QueryParam(map=true, name="ilriCode", requirements="\w+", strict=true, nullable=true,
      *     description="Retrieves all projects for the given ILRI codes")
-     * @QueryParam(name="projectsGroup", requirements="\w+", strict=true, nullable=true,
+     * @QueryParam(name="projectsGroup", key="projects_group", requirements="\w+", strict=true, nullable=true,
      *     description="Retrieves all projects for the given project's group")
      */
     public function getProjects(ParamFetcher $paramFetcher): View
