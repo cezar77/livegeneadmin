@@ -53,7 +53,7 @@ class Organisation
     private $partnerships;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\SamplingActivity", mappedBy="partnership")
+     * @ORM\OneToMany(targetEntity="App\Entity\SamplingActivity", mappedBy="partner")
      */
     private $samplingActivities;
 
