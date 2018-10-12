@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\SamplingActivityRepository")
@@ -21,12 +22,14 @@ class SamplingActivity
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Project", inversedBy="samplingActivities")
      * @ORM\JoinColumn(nullable=false)
+     * @JMS\MaxDepth(1)
      */
     private $project;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Organisation", inversedBy="samplingActivities")
      * @ORM\JoinColumn(nullable=false)
+     * @JMS\MaxDepth(1)
      */
     private $partner;
 
@@ -47,6 +50,7 @@ class SamplingActivity
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\SamplingDocumentation", mappedBy="samplingActivity")
+     * @JMS\MaxDepth(2)
      */
     private $samplingDocuments;
 

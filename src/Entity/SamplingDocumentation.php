@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Application\Sonata\MediaBundle\Entity\Media;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\SamplingDocumentationRepository")
@@ -21,18 +22,22 @@ class SamplingDocumentation
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\SamplingActivity", inversedBy="samplingDocuments")
      * @ORM\JoinColumn(nullable=false)
+     * @JMS\Exclude()
      */
     private $samplingActivity;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\SamplingDocumentType", inversedBy="samplingDocuments")
      * @ORM\JoinColumn(nullable=false)
+     * @JMS\Expose()
+     * @JMS\MaxDepth(2)
      */
     private $samplingDocumentType;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"}, fetch="LAZY")
      * @ORM\JoinColumn(nullable=false)
+     * @JMS\MaxDepth(4)
      */
     private $document;
 
