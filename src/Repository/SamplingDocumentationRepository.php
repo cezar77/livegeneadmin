@@ -19,6 +19,20 @@ class SamplingDocumentationRepository extends ServiceEntityRepository
         parent::__construct($registry, SamplingDocumentation::class);
     }
 
+    /**
+     * @return SamplingDocumentation[] Returns an array of SamplingDocumentation objects
+     */
+    public function findBySamplingDocumentationType($value)
+    {
+        return $this->createQueryBuilder('s')
+            ->join('s.samplingDocumentType', 'd')
+            ->andWhere('d.shortName = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 //    /**
 //     * @return SamplingDocumentation[] Returns an array of SamplingDocumentation objects
 //     */

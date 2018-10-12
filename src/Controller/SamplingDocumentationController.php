@@ -17,24 +17,20 @@ class SamplingDocumentationController extends FOSRestController
     /**
      * Retrieves a collection of SamplingActivity resource
      * @Rest\Get("/samplingdocumentations")
+     * @QueryParam(name="samplingDocumentType", key="document_type", requirements="\w+", strict=true, nullable=true,
+     *     description="Retrieves all documentations for the given document type")
      */
     public function getSamplingDocumentations(ParamFetcher $paramFetcher): View
     {
         $repository = $this->getDoctrine()->getRepository(SamplingDocumentation::class);
 
-        #$criteria = $paramFetcher->all();
+        $documentType = $paramFetcher->get('samplingDocumentType');
 
-        #foreach ($criteria as $key => $value) {
-        #    if (is_null($value)) {
-        #        unset($criteria[$key]);
-        #    }
-        #}
-
-        #if ($criteria) {
-        #    $data = $repository->findBy($criteria);
-        #} else {
-            $data = $repository->findAll();
-        #}
+        if ($documentType) {
+            $data = $repository->findBySamplingDocumentationType($documentType);
+        } else {
+           $data = $repository->findAll();
+        }
 
         return View::create($data, Response::HTTP_OK);
     }
