@@ -14,12 +14,12 @@ use FOS\RestBundle\Controller\Annotations\QueryParam;
 class ProjectController extends FOSRestController
 {
     /**
-     * Retrieves a collection of Project resource
+     * Retrieve a collection of Project resource
      * @Rest\Get("/projects")
      * @QueryParam(map=true, name="ilriCode", requirements="\w+", strict=true, nullable=true,
-     *     description="Retrieves all projects for the given ILRI codes")
+     *     description="Retrieve all projects for the given ILRI codes")
      * @QueryParam(name="projectsGroup", key="projects_group", requirements="\w+", strict=true, nullable=true,
-     *     description="Retrieves all projects for the given project's group")
+     *     description="Retrieve all projects for the given project's group")
      */
     public function getProjects(ParamFetcher $paramFetcher): View
     {

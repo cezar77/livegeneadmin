@@ -12,7 +12,7 @@ use Doctrine\ORM\EntityNotFoundException;
 class SDGController extends FOSRestController
 {
     /**
-     * Retrieves a collection of SDG resource
+     * Retrieve a collection of SDG resource
      * @Rest\Get("/sdgs")
      */
     public function getSDGs(): View
@@ -25,7 +25,7 @@ class SDGController extends FOSRestController
     }
 
     /**
-     * Retrieves a SDG resource
+     * Retrieve a SDG resource
      * @Rest\Get("/sdgs/{id}")
      */
     public function getSDG(int $id): View

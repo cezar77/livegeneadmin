@@ -15,10 +15,10 @@ use FOS\RestBundle\Controller\Annotations\QueryParam;
 class SamplingDocumentationController extends FOSRestController
 {
     /**
-     * Retrieves a collection of SamplingActivity resource
+     * Retrieve a collection of SamplingDocumentation resource
      * @Rest\Get("/samplingdocumentations")
      * @QueryParam(name="samplingDocumentType", key="document_type", requirements="\w+", strict=true, nullable=true,
-     *     description="Retrieves all documentations for the given document type")
+     *     description="Retrieve all documentations for the given document type")
      */
     public function getSamplingDocumentations(ParamFetcher $paramFetcher): View
     {
@@ -35,7 +35,7 @@ class SamplingDocumentationController extends FOSRestController
         return View::create($data, Response::HTTP_OK);
     }
     /**
-     * Retrieve a SamplingActivity resource
+     * Retrieve a SamplingDocumentation resource
      * @Rest\Get("/samplingdocumentations/{id}")
      */
     public function getSamplingDocumentation($id)

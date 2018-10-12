@@ -15,7 +15,7 @@ use FOS\RestBundle\Controller\Annotations\QueryParam;
 class SamplingActivityController extends FOSRestController
 {
     /**
-     * Retrieves a collection of SamplingActivity resource
+     * Retrieve a collection of SamplingActivity resource
      * @Rest\Get("/samplingactivities")
      */
     public function getSamplingActivities(ParamFetcher $paramFetcher): View
