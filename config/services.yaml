@@ -43,7 +43,7 @@ services:
         class: App\Admin\OrganisationAdmin
         arguments: [~, App\Entity\Organisation, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: 'Project management', label: 'Organisations' }
+            - { name: sonata.admin, manager_type: orm, group: 'Project management', label: 'Organisations', show_mosaic_button: true }
         calls:
             - [ setTemplate, [outer_list_rows_mosaic, "SonataMedia/OrganisationAdmin/list_outer_rows_mosaic.html.twig"] ]
         public: true
