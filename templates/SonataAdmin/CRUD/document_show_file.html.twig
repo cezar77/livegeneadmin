@@ -2,6 +2,8 @@
 
 {% block field %}
     <div>
-        <a href="{% path object.document, 'reference' %}">{{ object.document }}</a>
+        <a href="{% path object.document, 'reference' %}">
+            <img src="{% path object.document, 'default' %}" alt="thumbnail">
+        </a>
     </div>
 {% endblock %}
