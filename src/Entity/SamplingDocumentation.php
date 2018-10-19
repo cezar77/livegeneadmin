@@ -35,7 +35,7 @@ class SamplingDocumentation
     private $samplingDocumentType;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"}, fetch="LAZY")
+     * @ORM\ManyToOne(targetEntity="App\Application\Sonata\MediaBundle\Entity\Media", cascade={"persist", "remove"}, fetch="LAZY")
      * @ORM\JoinColumn(nullable=false)
      * @JMS\MaxDepth(4)
      */
