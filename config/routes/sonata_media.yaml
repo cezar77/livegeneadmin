@@ -8,5 +8,5 @@ sonata_media:
 
 sonata_api_media:
     resource: "@SonataMediaBundle/Resources/config/routing/api.xml"
-    prefix:   api
+    prefix:   /api
     type:     annotation
