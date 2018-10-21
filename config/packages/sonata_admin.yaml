@@ -4,6 +4,11 @@ sonata_admin:
     dashboard:
         blocks:
             - { type: sonata.admin.block.admin_list, position: left }
+    assets:
+        extra_stylesheets:
+            - build/app.css
+        extra_javascripts:
+            - build/app.js
 
 sonata_block:
     blocks:

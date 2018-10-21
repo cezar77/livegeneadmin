@@ -29,6 +29,10 @@ class CountryAdmin extends AbstractAdmin
         $listMapper
             ->addIdentifier('country')
             ->add('countryName')
+            ->add('flag', null, [
+                'sortable' => false,
+                'template' => 'SonataAdmin/CRUD/country_list_flag.html.twig'
+            ])
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),

@@ -1,0 +1,7 @@
+{% extends '@SonataAdmin/CRUD/list_outer_rows_mosaic.html.twig' %}
+
+{% block sonata_mosaic_background %}
+    <div style="text-align: center; margin-top: 2em;">
+        <span class="flag-icon flag-icon-{{ object.country|lower }}" style="font-size:5em;"></span>
+    </div>
+{% endblock %}
