@@ -36,7 +36,7 @@ services:
         class: App\Admin\ProjectAdmin
         arguments: [~, App\Entity\Project, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: 'Project management', label: 'Projects' }
+            - { name: sonata.admin, manager_type: orm, group: 'Project management', label: 'Projects', show_mosaic_button: false }
         public: true
 
     admin.organisation:
@@ -52,90 +52,90 @@ services:
         class: App\Admin\PartnershipAdmin
         arguments: [~, App\Entity\Partnership, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: 'Project management', label: 'Partnerships' }
+            - { name: sonata.admin, manager_type: orm, group: 'Project management', label: 'Partnerships', show_mosaic_button: false }
         public: true
 
     admin.partnership_type:
         class: App\Admin\PartnershipTypeAdmin
         arguments: [~, App\Entity\PartnershipType, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: 'Project management', label: 'Partnership Types' }
+            - { name: sonata.admin, manager_type: orm, group: 'Project management', label: 'Partnership Types', show_mosaic_button: false }
         public: true
 
     admin.contact:
         class: App\Admin\ContactAdmin
         arguments: [~, App\Entity\Contact, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: 'Project management', label: 'Contacts' }
+            - { name: sonata.admin, manager_type: orm, group: 'Project management', label: 'Contacts', show_mosaic_button: false }
         public: true
 
     admin.staff:
         class: App\Admin\StaffAdmin
         arguments: [~, App\Entity\Staff, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: 'Project management', label: 'Staff' }
+            - { name: sonata.admin, manager_type: orm, group: 'Project management', label: 'Staff', show_mosaic_button: false }
         public: true
 
     admin.staff_role:
         class: App\Admin\StaffRoleAdmin
         arguments: [~, App\Entity\StaffRole, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: 'Project management', label: 'Staff Roles' }
+            - { name: sonata.admin, manager_type: orm, group: 'Project management', label: 'Staff Roles', show_mosaic_button: false }
         public: true
 
     admin.country:
         class: App\Admin\CountryAdmin
         arguments: [~, App\Entity\Country, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: 'Project management',  label: Countries }
+            - { name: sonata.admin, manager_type: orm, group: 'Project management',  label: 'Countries', show_mosaic_button: true }
         public: true
 
     admin.country_role:
         class: App\Admin\CountryRoleAdmin
         arguments: [~, App\Entity\CountryRole, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: 'Project management', label: 'Country Roles' }
+            - { name: sonata.admin, manager_type: orm, group: 'Project management', label: 'Country Roles', show_mosaic_button: false }
         public: true
 
     admin.sdg:
         class: App\Admin\SDGAdmin
         arguments: [~, App\Entity\SDG, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: 'Project management', label: 'Sustainable Development Goals' }
+            - { name: sonata.admin, manager_type: orm, group: 'Project management', label: 'Sustainable Development Goals', show_mosaic_button: false }
         public: true
 
     admin.sdg_role:
         class: App\Admin\SDGRoleAdmin
         arguments: [~, App\Entity\SDGRole, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: 'Project management', label: 'Sustainable Development Goals Roles' }
+            - { name: sonata.admin, manager_type: orm, group: 'Project management', label: 'Sustainable Development Goals Roles', show_mosaic_button: false }
         public: true
 
     admin.expenditure:
         class: App\Admin\ExpenditureAdmin
         arguments: [~, App\Entity\Expenditure, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: 'Finance', label: 'Expenditures' }
+            - { name: sonata.admin, manager_type: orm, group: 'Finance', label: 'Expenditures', show_mosaic_button: false }
         public: true
 
     admin.sampling_document_type:
         class: App\Admin\SamplingDocumentTypeAdmin
         arguments: [~, App\Entity\SamplingDocumentType, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: 'Sampling management', label: 'Sampling Document Types' }
+            - { name: sonata.admin, manager_type: orm, group: 'Sampling management', label: 'Sampling Document Types', show_mosaic_button: false }
         public: true
 
     admin.sampling_documentation:
         class: App\Admin\SamplingDocumentationAdmin
         arguments: [~, App\Entity\SamplingDocumentation, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: 'Sampling management', label: 'Sampling Documentations' }
+            - { name: sonata.admin, manager_type: orm, group: 'Sampling management', label: 'Sampling Documentations', show_mosaic_button: false }
         public: true
 
     admin.sampling_activity:
         class: App\Admin\SamplingActivityAdmin
         arguments: [~, App\Entity\SamplingActivity, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: 'Sampling management', label: 'Sampling Activities' }
+            - { name: sonata.admin, manager_type: orm, group: 'Sampling management', label: 'Sampling Activities', show_mosaic_button: false }
         public: true
 
