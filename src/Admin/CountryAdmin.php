@@ -26,6 +26,8 @@ class CountryAdmin extends AbstractAdmin
 
     protected function configureListFields(ListMapper $listMapper)
     {
+        $this->setListMode('mosaic');
+
         $listMapper
             ->addIdentifier('country')
             ->add('countryName')
