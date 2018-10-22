@@ -6,7 +6,7 @@ sonata_media:
     resource: '@SonataMediaBundle/Resources/config/routing/media.xml'
     prefix: /media
 
-sonata_mediai_api:
-    resource: "@SonataMediaBundle/Resources/config/routing/api.xml"
-    prefix: /api
-    type: annotation
+#sonata_mediai_api:
+#    resource: "@SonataMediaBundle/Resources/config/routing/api.xml"
+#    prefix: /api
+#    type: annotation
