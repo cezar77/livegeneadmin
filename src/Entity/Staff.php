@@ -7,12 +7,15 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as JMS;
+use App\Entity\Traits\PersonTrait;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\StaffRepository")
  */
 class Staff
 {
+    use PersonTrait;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -30,29 +33,7 @@ class Staff
      * @ORM\Column(type="string", length=30)
      * @Assert\NotBlank()
      */
-    private $firstName;
-
-    /**
-     * @ORM\Column(type="string", length=50)
-     * @Assert\NotBlank()
-     */
-    private $lastName;
-
-    /**
-     * @ORM\Column(type="string", length=30)
-     * @Assert\NotBlank()
-     */
     private $homeProgram;
-
-    /**
-     * @ORM\Column(type="string", length=100)
-     * @Assert\Email(
-     *     message = "The email '{{ value }}' is not a valid email.",
-     *     checkMX = false
-     * )
-     * @Assert\NotBlank()
-     */
-    private $email;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Project", mappedBy="principalInvestigator")
@@ -94,30 +75,6 @@ class Staff
         return $this;
     }
 
-    public function getFirstName(): ?string
-    {
-        return $this->firstName;
-    }
-
-    public function setFirstName(string $firstName): self
-    {
-        $this->firstName = $firstName;
-
-        return $this;
-    }
-
-    public function getLastName(): ?string
-    {
-        return $this->lastName;
-    }
-
-    public function setLastName(string $lastName): self
-    {
-        $this->lastName = $lastName;
-
-        return $this;
-    }
-
     public function getHomeProgram(): ?string
     {
         return $this->homeProgram;
@@ -126,18 +83,6 @@ class Staff
     public function setHomeProgram(string $homeProgram): self
     {
         $this->homeProgram = $homeProgram;
-
-        return $this;
-    }
-
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): self
-    {
-        $this->email = strtolower($email);
 
         return $this;
     }
