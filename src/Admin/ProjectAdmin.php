@@ -16,10 +16,10 @@ class ProjectAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('Project description')
-                ->add('ilriCode', null, array(
+            ->with('Project description', ['class' => 'col-md-8'])
+                ->add('ilriCode', null, [
                     'label' => 'ILRI code'
-                ))
+                ])
                 ->add('fullName')
                 ->add('shortName')
                 ->add('principalInvestigator', ModelListType::class)
@@ -27,7 +27,24 @@ class ProjectAdmin extends AbstractAdmin
                 ->add('donorReference')
                 ->add('donorProjectName')
             ->end()
-            ->with('Project length', array('class' => 'col-md-6'))
+            ->with('Project value', ['class' => 'col-md-4'])
+                ->add('totalProjectValue', null, [
+                    'attr' => [
+                        'min' => 1
+                    ]
+                ])
+                ->add('totalIlriValue', null, [
+                    'attr' => [
+                        'min' => 1
+                    ]
+                ])
+                ->add('totalLivegeneValue', null, [
+                    'attr' => [
+                        'min' => 1
+                    ]
+                ])
+            ->end()
+            ->with('Project length', ['class' => 'col-md-4'])
                 ->add('startDate', DatePickerType::class, [
                     'dp_pick_time' => false,
                     'format' => DateType::HTML5_FORMAT
@@ -37,26 +54,27 @@ class ProjectAdmin extends AbstractAdmin
                     'format' => DateType::HTML5_FORMAT
                 ])
             ->end()
-            ->with('Project features', array('class' => 'col-md-6'))
-                ->add('status', null, array(
-                    'attr' => array(
+            ->with('Project features', ['class' => 'col-md-4'])
+                ->add('status', null, [
+                    'attr' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ]
+                ])
+                ->add('capacityDevelopment', null, [
+                    'attr' => [
                         'min' => 0,
                         'max' => 100,
                     )
-                ))
-                ->add('capacityDevelopment', null, array(
-                    'attr' => array(
-                        'min' => 0,
-                        'max' => 100,
-                    )
-                ))
+                ])
             ->end()
         ;
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
-        $datagridMapper->add('shortName')
+        $datagridMapper
+            ->add('shortName')
             ->add('fullName')    
         ;
     }
@@ -66,12 +84,12 @@ class ProjectAdmin extends AbstractAdmin
         $listMapper->addIdentifier('ilriCode', null, ['label' => 'ILRI code'])
             ->add('shortName')
             ->add('fullName')
-            ->add('_action', 'actions', array(
-                'actions' => array(
-                    'show' => array(),
-                    'edit' => array(),
-                )
-            ))
+            ->add('_action', 'actions', [
+                'actions' => [
+                    'show' => [],
+                    'edit' => [],
+                ]
+            ])
         ;
     }
 

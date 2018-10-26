@@ -66,16 +66,25 @@ class Project
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Range(
+     *     min=1
+     * )
      */
     private $totalProjectValue;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Range(
+     *     min=1
+     * )
      */
     private $totalIlriValue;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Range(
+     *     min=1
+     * )
      */
     private $totalLivegeneValue;
 
