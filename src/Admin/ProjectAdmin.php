@@ -65,7 +65,7 @@ class ProjectAdmin extends AbstractAdmin
                     'attr' => [
                         'min' => 0,
                         'max' => 100,
-                    )
+                    ]
                 ])
             ->end()
         ;
