@@ -45,7 +45,7 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: 'Project management', label: 'Organisations', show_mosaic_button: true }
         calls:
-            - [ setTemplate, [outer_list_rows_mosaic, "SonataMedia/OrganisationAdmin/list_outer_rows_mosaic.html.twig"] ]
+            - [ setTemplate, [outer_list_rows_mosaic, "SonataAdmin/CRUD/Organisation/list_outer_rows_mosaic.html.twig"] ]
         public: true
 
     admin.partnership:
@@ -89,7 +89,7 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: 'Project management',  label: 'Countries', show_mosaic_button: true }
         calls:
-            - [ setTemplate, [outer_list_rows_mosaic, "SonataMedia/CountryAdmin/list_outer_rows_mosaic.html.twig"] ]
+            - [ setTemplate, [outer_list_rows_mosaic, "SonataAdmin/CRUD/Country/list_outer_rows_mosaic.html.twig"] ]
         public: true
 
     admin.country_role:

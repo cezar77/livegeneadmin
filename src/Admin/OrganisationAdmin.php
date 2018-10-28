@@ -42,7 +42,7 @@ class OrganisationAdmin extends AbstractAdmin
             ->add('logoUrl', null, [
                 'label' => 'Logo',
                 'sortable' => false,
-                'template' => 'SonataAdmin/CRUD/organisation_list_logo.html.twig'
+                'template' => 'SonataAdmin/CRUD/Organisation/list_logo.html.twig'
             ])
             ->add('country', null, [
                 'sortable' => true,
@@ -67,7 +67,7 @@ class OrganisationAdmin extends AbstractAdmin
             ->add('fullName')
             ->add('logoUrl', null, [
                 'label' => 'Logo',
-                'template' => 'SonataAdmin/CRUD/organisation_show_logo.html.twig'
+                'template' => 'SonataAdmin/CRUD/Organisation/show_logo.html.twig'
             ])
             ->add('country')
         ;

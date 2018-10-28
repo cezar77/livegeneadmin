@@ -33,7 +33,7 @@ class CountryAdmin extends AbstractAdmin
             ->add('countryName')
             ->add('flag', null, [
                 'sortable' => false,
-                'template' => 'SonataAdmin/CRUD/country_list_flag.html.twig'
+                'template' => 'SonataAdmin/CRUD/Country/list_flag.html.twig'
             ])
             ->add('_action', 'actions', array(
                 'actions' => array(

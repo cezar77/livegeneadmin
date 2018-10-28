@@ -65,7 +65,10 @@ class SDG
 
     public function __toString()
     {
-        return $this->id ? sprintf('%s - %s', $this->id, $this->headline) : '';
+        return $this->id
+            ? sprintf('%s - %s', $this->id, $this->headline)
+            : 'New Sustainable Development Goal'
+        ;
     }
 
     public function getId(): ?int

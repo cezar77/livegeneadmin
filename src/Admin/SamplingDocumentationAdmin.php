@@ -60,7 +60,7 @@ class SamplingDocumentationAdmin extends AbstractAdmin
             ->add('samplingDocumentType')
             ->add('document')
             ->add('file', null, [
-                'template' => 'SonataAdmin/CRUD/document_show_file.html.twig'
+                'template' => 'SonataAdmin/CRUD/SamplingDocumentation/show_file.html.twig'
             ])
         ;
     }
