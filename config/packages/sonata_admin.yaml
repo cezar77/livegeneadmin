@@ -9,6 +9,8 @@ sonata_admin:
             - build/app.css
         extra_javascripts:
             - build/app.js
+    security:
+        handler: sonata.admin.security.handler.role
 
 sonata_block:
     blocks:
