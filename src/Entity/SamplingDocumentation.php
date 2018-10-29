@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Application\Sonata\MediaBundle\Entity\Media;
+use App\Application\Sonata\UserBundle\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as JMS;
@@ -40,6 +41,13 @@ class SamplingDocumentation
      * @JMS\MaxDepth(4)
      */
     private $document;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Application\Sonata\UserBundle\Entity\User", cascade={"persist"}, fetch="LAZY")
+     * @ORM\JoinColumn(nullable=false)
+     * @JMS\Exclude()
+     */
+    private $owner;
 
     public function __toString()
     {
@@ -83,6 +91,18 @@ class SamplingDocumentation
     public function setDocument(?Media $document): self
     {
         $this->document = $document;
+
+        return $this;
+    }
+
+    public function getOwner(): ?User
+    {
+        return $this->owner;
+    }
+
+    public function setOwner(?User $owner): self
+    {
+        $this->owner = $owner;
 
         return $this;
     }
