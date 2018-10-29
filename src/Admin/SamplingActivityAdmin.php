@@ -43,6 +43,7 @@ class SamplingActivityAdmin extends AbstractAdmin
             ->add('description')
             ->add('startDate')
             ->add('endDate')
+            ->add('owner')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
@@ -60,6 +61,19 @@ class SamplingActivityAdmin extends AbstractAdmin
             ->add('description')
             ->add('startDate')
             ->add('endDate')
+            ->add('owner')
         ;
+    }
+
+    public function prePersist($object)
+    {
+        $user = $this
+                    ->getConfigurationPool()
+                    ->getContainer()
+                    ->get('security.token_storage')
+                    ->getToken()
+                    ->getUser()
+                ;
+        $object->setOwner($user);
     }
 }

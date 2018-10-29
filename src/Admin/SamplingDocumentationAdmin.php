@@ -21,7 +21,6 @@ class SamplingDocumentationAdmin extends AbstractAdmin
                 'provider' => 'sonata.media.provider.file',
                 'context' => 'default'
             ])
-            ->add('owner', ModelListType::class)
         ;
     }
     
@@ -57,5 +56,17 @@ class SamplingDocumentationAdmin extends AbstractAdmin
                 'template' => 'SonataAdmin/CRUD/SamplingDocumentation/show_file.html.twig'
             ])
         ;
+    }
+
+    public function prePersist($object)
+    {
+        $user = $this
+                    ->getConfigurationPool()
+                    ->getContainer()
+                    ->get('security.token_storage')
+                    ->getToken()
+                    ->getUser()
+                ;
+        $object->setOwner($user);
     }
 }

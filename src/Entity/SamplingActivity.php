@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Application\Sonata\UserBundle\Entity\User;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -53,6 +54,13 @@ class SamplingActivity
      * @JMS\MaxDepth(2)
      */
     private $samplingDocuments;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Application\Sonata\UserBundle\Entity\User", cascade={"persist"}, fetch="LAZY")
+     * @ORM\JoinColumn(nullable=false)
+     * @JMS\Exclude()
+     */
+    private $owner;
 
     public function __construct()
     {
@@ -156,6 +164,18 @@ class SamplingActivity
                 $samplingDocument->setSamplingActivity(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getOwner(): ?User
+    {
+        return $this->owner;
+    }
+
+    public function setOwner(?User $owner): self
+    {
+        $this->owner = $owner;
 
         return $this;
     }
