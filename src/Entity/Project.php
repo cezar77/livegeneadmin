@@ -60,7 +60,7 @@ class Project
     private $donorReference;
 
     /**
-     * @ORM\Column(type="string", length=200, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $donorProjectName;
 
