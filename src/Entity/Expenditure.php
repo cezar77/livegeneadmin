@@ -24,7 +24,7 @@ class Expenditure
     private $ilriCode;
 
     /**
-     * @ORM\Column(type="string", length=200)
+     * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
      */
     private $name;
