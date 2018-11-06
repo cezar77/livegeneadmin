@@ -43,6 +43,18 @@ class ProjectController extends FOSRestController
     }
 
     /**
+     * Retrieve a collection of all active Projects
+     * @Rest\Get("/projects/active")
+     */
+    public function getActiveProjects(ParamFetcher $paramFetcher): View
+    {
+        $repository = $this->getDoctrine()->getRepository(Project::class);
+        $data = $repository->findActiveProjects();
+
+        return View::create($data, Response::HTTP_OK);
+    }
+
+    /**
      * Retrieve a Project resource
      * @Rest\Get("/projects/{ilriCode}")
      */

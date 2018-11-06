@@ -19,6 +19,17 @@ class ProjectRepository extends ServiceEntityRepository
         parent::__construct($registry, Project::class);
     }
 
+    /**
+     * @return Project[] Returns an array of Project objects
+     */
+    public function findActiveProjects()
+    {
+        $projects = $this->findAll();
+        return array_filter($projects, function($var) {
+            return $var->getIsActive();
+        });
+    }
+
 //    /**
 //     * @return Project[] Returns an array of Project objects
 //     */

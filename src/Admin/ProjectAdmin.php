@@ -84,6 +84,7 @@ class ProjectAdmin extends AbstractAdmin
         $listMapper->addIdentifier('ilriCode', null, ['label' => 'ILRI code'])
             ->add('shortName')
             ->add('fullName')
+            ->add('isActive', 'boolean')
             ->add('_action', 'actions', [
                 'actions' => [
                     'show' => [],
