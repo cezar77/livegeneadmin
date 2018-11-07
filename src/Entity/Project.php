@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -167,7 +168,7 @@ class Project
 
     public function __toString()
     {
-        return $this->fullName ? $this->fullName : 'New Organisation';
+        return $this->fullName ?: '';
     }
 
     public function getId(): ?int
@@ -501,6 +502,23 @@ class Project
     public function getIsActive(): bool
     {
         $now = new \DateTime('now');
-        return $this->endDate > $now && $this->startDate < $now;
+        return $this->endDate >= $now && $this->startDate <= $now;
+    }
+
+    public function getDonors(): ?ArrayCollection
+    {
+        $partnerships = $this->getPartnerships()->filter(
+            function($entry) {
+                if ('Investor' === $entry->getPartnershipType()->getDescription()) {
+                    return true;
+                }
+                return false;
+            }
+        );
+        $investors = new ArrayCollection();
+        foreach ($partnerships as $partnership) {
+            $investors[] = $partnership->getPartner();
+        }
+        return $investors;
     }
 }
