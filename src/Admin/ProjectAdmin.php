@@ -102,6 +102,9 @@ class ProjectAdmin extends AbstractAdmin
             ->add('shortName')
             ->add('principalInvestigator')
             ->add('projectsGroup')
+            ->add('donors', null, [
+                'template' => '@SonataAdmin/CRUD/Association/show_many_to_many.html.twig'
+            ])
             ->add('donorReference')
             ->add('donorProjectName')
             ->add('totalProjectValue')
@@ -111,9 +114,6 @@ class ProjectAdmin extends AbstractAdmin
             ->add('endDate')
             ->add('status')
             ->add('capacityDevelopment')
-            ->add('donors', null, [
-                'template' => '@SonataAdmin/CRUD/Association/show_many_to_many.html.twig'
-            ])
         ;
     }
 }
