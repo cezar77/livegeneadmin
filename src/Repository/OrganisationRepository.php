@@ -19,6 +19,21 @@ class OrganisationRepository extends ServiceEntityRepository
         parent::__construct($registry, Organisation::class);
     }
 
+    /**
+     * @return Organisation[] Returns an array of Organisation objects
+     */
+    public function findByPartnershipType($value = 'Investor')
+    {
+        return $this->createQueryBuilder('o')
+            ->leftJoin('o.partnerships', 'p')
+            ->leftJoin('p.partnershipType', 't')
+            ->andWhere('t.description = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 //    /**
 //     * @return Organisation[] Returns an array of Organisation objects
 //     */

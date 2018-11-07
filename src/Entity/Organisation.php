@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\OrganisationRepository")
@@ -44,16 +45,19 @@ class Organisation
      * @ORM\ManyToOne(targetEntity="App\Entity\Country", inversedBy="organisations")
      * @ORM\JoinColumn(nullable=false)
      * @Assert\NotBlank()
+     * @JMS\MaxDepth(1)
      */
     private $country;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Partnership", mappedBy="partner")
+     * @JMS\MaxDepth(2)
      */
     private $partnerships;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\SamplingActivity", mappedBy="partner")
+     * @JMS\Exclude()
      */
     private $samplingActivities;
 
