@@ -74,6 +74,9 @@ class ProjectAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
+            ->add('ilriCode', null, [
+                'label' => 'ILRI code'
+            ])
             ->add('shortName')
             ->add('fullName')    
         ;

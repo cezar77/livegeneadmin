@@ -141,7 +141,7 @@ class Project
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\StaffRole", mappedBy="project")
-     * @JMS\Exclude()
+     * @JMS\MaxDepth(3)
      */
     private $staffRoles;
 
