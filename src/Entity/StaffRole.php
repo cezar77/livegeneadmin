@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use JMS\Serializer\Annotation as JMS;
 use App\Validator\Constraints as CustomAssert;
 
 /**
@@ -88,6 +89,9 @@ class StaffRole
         return $this;
     }
 
+    /**
+     * @JMS\VirtualProperty()
+     */
     public function getTotalPercent(): int
     {
         if (!$this->id) {
