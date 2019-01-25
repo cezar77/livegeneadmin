@@ -17,7 +17,9 @@ class ContactAdmin extends AbstractAdmin
             ->add('title')
             ->add('firstName')
             ->add('lastName')
-            ->add('email', EmailType::class)
+            ->add('email', EmailType::class, [
+                'required' => false
+            ])
             ->add('phone')
         ;
     }
