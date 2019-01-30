@@ -37,12 +37,6 @@ class SDGAdmin extends AbstractAdmin
 
     protected function configureListFields(ListMapper $listMapper)
     {
-        if ($mode = $this->request->query->get('_list_mode')) {
-            $this->setListMode($mode);
-        } else {
-            $this->setListMode('mosaic');
-        }
-
         $listMapper->addIdentifier('id')
             ->add('headline')
             ->add('color', null, [
