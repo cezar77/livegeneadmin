@@ -2217,16 +2217,16 @@
         },
         {
             "name": "nelmio/api-doc-bundle",
-            "version": "v3.3.0",
+            "version": "v3.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nelmio/NelmioApiDocBundle.git",
-                "reference": "99833189fd963ba75c5b6a99d91fe5485201c0f3"
+                "reference": "1b104bbf748f2af0496897c98d5ded3ac545ed43"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nelmio/NelmioApiDocBundle/zipball/99833189fd963ba75c5b6a99d91fe5485201c0f3",
-                "reference": "99833189fd963ba75c5b6a99d91fe5485201c0f3",
+                "url": "https://api.github.com/repos/nelmio/NelmioApiDocBundle/zipball/1b104bbf748f2af0496897c98d5ded3ac545ed43",
+                "reference": "1b104bbf748f2af0496897c98d5ded3ac545ed43",
                 "shasum": ""
             },
             "require": {
@@ -2296,7 +2296,7 @@
                 "documentation",
                 "rest"
             ],
-            "time": "2018-08-29T23:10:36+00:00"
+            "time": "2019-01-25T17:25:46+00:00"
         },
         {
             "name": "nelmio/cors-bundle",
@@ -3383,16 +3383,16 @@
         },
         {
             "name": "sonata-project/core-bundle",
-            "version": "3.15.0",
+            "version": "3.15.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataCoreBundle.git",
-                "reference": "664d338cde48effa27c96846a131d75b4b5ea255"
+                "reference": "30f5d1201aab91c493b2f15d91f6514fe4ad2daf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataCoreBundle/zipball/664d338cde48effa27c96846a131d75b4b5ea255",
-                "reference": "664d338cde48effa27c96846a131d75b4b5ea255",
+                "url": "https://api.github.com/repos/sonata-project/SonataCoreBundle/zipball/30f5d1201aab91c493b2f15d91f6514fe4ad2daf",
+                "reference": "30f5d1201aab91c493b2f15d91f6514fe4ad2daf",
                 "shasum": ""
             },
             "require": {
@@ -3463,7 +3463,7 @@
             "keywords": [
                 "sonata"
             ],
-            "time": "2019-01-20T13:25:19+00:00"
+            "time": "2019-01-26T22:34:20+00:00"
         },
         {
             "name": "sonata-project/datagrid-bundle",
@@ -3738,16 +3738,16 @@
         },
         {
             "name": "sonata-project/exporter",
-            "version": "2.0.0",
+            "version": "2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/exporter.git",
-                "reference": "a82bb9c3ed6fe9fa073c8bf145db6449da1ab8e7"
+                "reference": "9e84fd03ef0c696b9b4e9617b73cb6defaf3b476"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/exporter/zipball/a82bb9c3ed6fe9fa073c8bf145db6449da1ab8e7",
-                "reference": "a82bb9c3ed6fe9fa073c8bf145db6449da1ab8e7",
+                "url": "https://api.github.com/repos/sonata-project/exporter/zipball/9e84fd03ef0c696b9b4e9617b73cb6defaf3b476",
+                "reference": "9e84fd03ef0c696b9b4e9617b73cb6defaf3b476",
                 "shasum": ""
             },
             "require": {
@@ -3804,7 +3804,7 @@
                 "export",
                 "xls"
             ],
-            "time": "2018-12-15T18:40:08+00:00"
+            "time": "2019-01-26T10:32:20+00:00"
         },
         {
             "name": "sonata-project/media-bundle",
