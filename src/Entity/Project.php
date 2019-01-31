@@ -78,6 +78,10 @@ class Project
      * @Assert\Range(
      *     min=1
      * )
+     * @Assert\Expression(
+     *     "this.getTotalIlriValue() <= this.getTotalProjectValue()",
+     *     message="The total ILRI value must not exceed the total project value."
+     * )
      */
     private $totalIlriValue;
 
@@ -85,6 +89,10 @@ class Project
      * @ORM\Column(type="integer", nullable=true)
      * @Assert\Range(
      *     min=1
+     * )
+     * @Assert\Expression(
+     *     "this.getTotalLivegeneValue() <= this.getTotalProjectValue()",
+     *     message="The total LiveGene value must not exceed the total project value."
      * )
      */
     private $totalLivegeneValue;
