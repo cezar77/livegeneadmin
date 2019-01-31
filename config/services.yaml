@@ -103,7 +103,7 @@ services:
         class: App\Admin\SDGAdmin
         arguments: [~, App\Entity\SDG, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: 'Project management', label: 'Sustainable Development Goals', show_mosaic_button: false }
+            - { name: sonata.admin, manager_type: orm, group: 'Project management', label: 'Sustainable Development Goals', show_mosaic_button: true }
         public: true
 
     admin.sdg_role:
