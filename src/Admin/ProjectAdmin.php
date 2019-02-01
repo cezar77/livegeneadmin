@@ -16,59 +16,65 @@ class ProjectAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('Project description', ['class' => 'col-md-8'])
-                ->add('ilriCode', null, [
-                    'label' => 'ILRI code'
-                ])
-                ->add('fullName')
-                ->add('shortName')
-                ->add('principalInvestigator', ModelListType::class)
-                ->add('team')
-                ->add('donor', ModelListType::class)
-                ->add('donorReference')
-                ->add('donorProjectName')
+            ->tab('Main')
+                ->with('Project description', ['class' => 'col-md-8'])
+                    ->add('ilriCode', null, [
+                        'label' => 'ILRI code'
+                    ])
+                    ->add('fullName')
+                    ->add('shortName')
+                    ->add('principalInvestigator', ModelListType::class)
+                    ->add('team')
+                ->end()
+                ->with('Project length', ['class' => 'col-md-4'])
+                    ->add('startDate', DatePickerType::class, [
+                        'dp_pick_time' => false,
+                        'format' => DateType::HTML5_FORMAT
+                    ])
+                    ->add('endDate', DatePickerType::class, [
+                        'dp_pick_time' => false,
+                        'format' => DateType::HTML5_FORMAT
+                    ])
+                ->end()
+                ->with('Project features', ['class' => 'col-md-4'])
+                    ->add('status', null, [
+                        'attr' => [
+                            'min' => 0,
+                            'max' => 100,
+                        ]
+                    ])
+                    ->add('capacityDevelopment', null, [
+                        'attr' => [
+                            'min' => 0,
+                            'max' => 100,
+                        ]
+                    ])
+                ->end()
             ->end()
-            ->with('Project value', ['class' => 'col-md-4'])
-                ->add('totalProjectValue', null, [
-                    'attr' => [
-                        'min' => 1
-                    ]
-                ])
-                ->add('totalIlriValue', null, [
-                    'label' => 'Total ILRI value',
-                    'attr' => [
-                        'min' => 1
-                    ]
-                ])
-                ->add('totalLivegeneValue', null, [
-                    'attr' => [
-                        'min' => 1
-                    ]
-                ])
-            ->end()
-            ->with('Project length', ['class' => 'col-md-4'])
-                ->add('startDate', DatePickerType::class, [
-                    'dp_pick_time' => false,
-                    'format' => DateType::HTML5_FORMAT
-                ])
-                ->add('endDate', DatePickerType::class, [
-                    'dp_pick_time' => false,
-                    'format' => DateType::HTML5_FORMAT
-                ])
-            ->end()
-            ->with('Project features', ['class' => 'col-md-4'])
-                ->add('status', null, [
-                    'attr' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ]
-                ])
-                ->add('capacityDevelopment', null, [
-                    'attr' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ]
-                ])
+            ->tab('Award')
+                ->with('Donor information', ['class' => 'col-md-8'])
+                    ->add('donor', ModelListType::class)
+                    ->add('donorReference')
+                    ->add('donorProjectName')
+                ->end()
+                ->with('Project value', ['class' => 'col-md-4'])
+                    ->add('totalProjectValue', null, [
+                        'attr' => [
+                            'min' => 1
+                        ]
+                    ])
+                    ->add('totalIlriValue', null, [
+                        'label' => 'Total ILRI value',
+                        'attr' => [
+                            'min' => 1
+                        ]
+                    ])
+                    ->add('totalLivegeneValue', null, [
+                        'attr' => [
+                            'min' => 1
+                        ]
+                    ])
+                ->end()
             ->end()
         ;
     }
@@ -104,28 +110,32 @@ class ProjectAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('ilriCode', null, [
-                'label' => 'ILRI code'
-            ])
-            ->add('fullName')
-            ->add('shortName')
-            ->add('principalInvestigator')
-            ->add('team')
-            ->add('donors', null, [
-                'template' => '@SonataAdmin/CRUD/Association/show_many_to_many.html.twig'
-            ])
-            ->add('donor')
-            ->add('donorReference')
-            ->add('donorProjectName')
-            ->add('totalProjectValue')
-            ->add('totalIlriValue', null, [
-                'label' => 'Total ILRI value'
-            ])
-            ->add('totalLivegeneValue')
-            ->add('startDate')
-            ->add('endDate')
-            ->add('status')
-            ->add('capacityDevelopment')
+            ->with('Main', ['class' => 'col-md-6'])
+                ->add('ilriCode', null, [
+                    'label' => 'ILRI code'
+                ])
+                ->add('fullName')
+                ->add('shortName')
+                ->add('principalInvestigator')
+                ->add('team')
+                ->add('startDate')
+                ->add('endDate')
+                ->add('status')
+                ->add('capacityDevelopment')
+            ->end()
+            ->with('Award', ['class' => 'col-md-6'])
+                ->add('donors', null, [
+                    'template' => '@SonataAdmin/CRUD/Association/show_many_to_many.html.twig'
+                ])
+                ->add('donor')
+                ->add('donorReference')
+                ->add('donorProjectName')
+                ->add('totalProjectValue')
+                ->add('totalIlriValue', null, [
+                    'label' => 'Total ILRI value'
+                ])
+                ->add('totalLivegeneValue')
+            ->end()
         ;
     }
 }
