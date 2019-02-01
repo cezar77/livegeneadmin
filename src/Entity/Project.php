@@ -53,7 +53,7 @@ class Project
      * @ORM\Column(type="string", length=20)
      * @Assert\NotBlank()
      */
-    private $projectsGroup;
+    private $team;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Organisation", inversedBy="projects")
@@ -240,14 +240,14 @@ class Project
         return $this;
     }
 
-    public function getProjectsGroup(): ?string
+    public function getTeam(): ?string
     {
-        return $this->projectsGroup;
+        return $this->team;
     }
 
-    public function setProjectsGroup(string $projectsGroup): self
+    public function setTeam(string $team): self
     {
-        $this->projectsGroup = $projectsGroup;
+        $this->team = $team;
 
         return $this;
     }

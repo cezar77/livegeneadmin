@@ -23,7 +23,7 @@ class ProjectAdmin extends AbstractAdmin
                 ->add('fullName')
                 ->add('shortName')
                 ->add('principalInvestigator', ModelListType::class)
-                ->add('projectsGroup')
+                ->add('team')
                 ->add('donor', ModelListType::class)
                 ->add('donorReference')
                 ->add('donorProjectName')
@@ -35,6 +35,7 @@ class ProjectAdmin extends AbstractAdmin
                     ]
                 ])
                 ->add('totalIlriValue', null, [
+                    'label' => 'Total ILRI value',
                     'attr' => [
                         'min' => 1
                     ]
@@ -80,6 +81,7 @@ class ProjectAdmin extends AbstractAdmin
             ])
             ->add('shortName')
             ->add('fullName')    
+            ->add('team')
         ;
     }
 
@@ -88,6 +90,7 @@ class ProjectAdmin extends AbstractAdmin
         $listMapper->addIdentifier('ilriCode', null, ['label' => 'ILRI code'])
             ->add('shortName')
             ->add('fullName')
+            ->add('team')
             ->add('isActive', 'boolean')
             ->add('_action', 'actions', [
                 'actions' => [
@@ -101,11 +104,13 @@ class ProjectAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('ilriCode')
+            ->add('ilriCode', null, [
+                'label' => 'ILRI code'
+            ])
             ->add('fullName')
             ->add('shortName')
             ->add('principalInvestigator')
-            ->add('projectsGroup')
+            ->add('team')
             ->add('donors', null, [
                 'template' => '@SonataAdmin/CRUD/Association/show_many_to_many.html.twig'
             ])
@@ -113,7 +118,9 @@ class ProjectAdmin extends AbstractAdmin
             ->add('donorReference')
             ->add('donorProjectName')
             ->add('totalProjectValue')
-            ->add('totalIlriValue')
+            ->add('totalIlriValue', null, [
+                'label' => 'Total ILRI value'
+            ])
             ->add('totalLivegeneValue')
             ->add('startDate')
             ->add('endDate')
