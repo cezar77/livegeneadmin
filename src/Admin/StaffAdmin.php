@@ -26,7 +26,12 @@ class StaffAdmin extends AbstractAdmin
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
-        $datagridMapper->add('username');
+        $datagridMapper
+            ->add('username')
+            ->add('firstName')
+            ->add('lastName')
+            ->add('homeProgram')
+        ;
     }
 
     protected function configureListFields(ListMapper $listMapper)

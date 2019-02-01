@@ -30,7 +30,11 @@ class OrganisationAdmin extends AbstractAdmin
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
-        $datagridMapper->add('shortName');
+        $datagridMapper
+            ->add('shortName')
+            ->add('fullName')
+            ->add('country')
+        ;
     }
 
     protected function configureListFields(ListMapper $listMapper)
