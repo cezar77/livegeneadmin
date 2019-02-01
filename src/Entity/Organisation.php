@@ -56,6 +56,12 @@ class Organisation
     private $partnerships;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Project", mappedBy="donor")
+     * @JMS\MaxDepth(1)
+     */
+    private $projects;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\SamplingActivity", mappedBy="partner")
      * @JMS\Exclude()
      */
@@ -152,6 +158,37 @@ class Organisation
             // set the owning side to null (unless already changed)
             if ($partnership->getPartner() === $this) {
                 $partnership->setPartner(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Project[]
+     */
+    public function getProjects(): Collection
+    {
+        return $this->projects;
+    }
+
+    public function addProject(Project $project): self
+    {
+        if (!$this->projects->contains($project)) {
+            $this->projects[] = $project;
+            $project->setDonor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProject(Project $project): self
+    {
+        if ($this->projects->contains($project)) {
+            $this->projects->removeElement($project);
+            // set the owning side to null (unless already changed)
+            if ($project->getDonor() === $this) {
+                $project->setDonor(null);
             }
         }
 

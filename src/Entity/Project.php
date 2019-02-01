@@ -56,6 +56,14 @@ class Project
     private $projectsGroup;
 
     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Organisation", inversedBy="projects")
+     * @ORM\JoinColumn(nullable=true)
+     * @Assert\NotBlank()
+     * @JMS\MaxDepth(1)
+     */
+    private $donor;
+
+    /**
      * @ORM\Column(type="string", length=50, nullable=true)
      */
     private $donorReference;
@@ -240,6 +248,18 @@ class Project
     public function setProjectsGroup(string $projectsGroup): self
     {
         $this->projectsGroup = $projectsGroup;
+
+        return $this;
+    }
+
+    public function getDonor(): ?Organisation
+    {
+        return $this->donor;
+    }
+
+    public function setDonor(?Organisation $donor): self
+    {
+        $this->donor = $donor;
 
         return $this;
     }
