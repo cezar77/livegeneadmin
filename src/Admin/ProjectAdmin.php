@@ -95,7 +95,9 @@ class ProjectAdmin extends AbstractAdmin
     {
         $listMapper->addIdentifier('ilriCode', null, ['label' => 'ILRI code'])
             ->add('shortName')
-            ->add('fullName')
+            ->add('fullName', null, [
+                'template' => 'SonataAdmin/CRUD/Project/list_full_name.html.twig'
+            ])
             ->add('team')
             ->add('isActive', 'boolean')
             ->add('_action', 'actions', [
