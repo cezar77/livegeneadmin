@@ -28,11 +28,19 @@ class SamplingActivity
     private $project;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Organisation", inversedBy="samplingActivities")
-     * @ORM\JoinColumn(nullable=false)
-     * @JMS\MaxDepth(1)
+     * @ORM\ManyToMany(targetEntity="App\Entity\Organisation", inversedBy="samplingActivities")
      */
-    private $partner;
+    private $samplingPartners;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Species", inversedBy="samplingActivities")
+     */
+    private $species;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Country", inversedBy="samplingActivities")
+     */
+    private $countries;
 
     /**
      * @ORM\Column(type="string", length=200)
@@ -65,6 +73,9 @@ class SamplingActivity
     public function __construct()
     {
         $this->samplingDocuments = new ArrayCollection();
+        $this->samplingPartners = new ArrayCollection();
+        $this->species = new ArrayCollection();
+        $this->countries = new ArrayCollection();
     }
 
     public function __toString()
@@ -89,14 +100,80 @@ class SamplingActivity
         return $this;
     }
 
-    public function getPartner(): ?Organisation
+    /**
+     * @return Collection|Organisation[]
+     */
+    public function getSamplingPartners(): Collection
     {
-        return $this->partner;
+        return $this->samplingPartners;
     }
 
-    public function setPartner(?Organisation $partner): self
+    public function addSamplingPartner(Organisation $samplingPartner): self
     {
-        $this->partner = $partner;
+        if (!$this->samplingPartners->contains($samplingPartner)) {
+            $this->samplingPartners[] = $samplingPartner;
+        }
+
+        return $this;
+    }
+
+    public function removeSamplingPartner(Organisation $samplingPartner): self
+    {
+        if ($this->samplingPartners->contains($samplingPartner)) {
+            $this->samplingPartners->removeElement($samplingPartner);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Species[]
+     */
+    public function getSpecies(): Collection
+    {
+        return $this->species;
+    }
+
+    public function addSpecies(Species $species): self
+    {
+        if (!$this->species->contains($species)) {
+            $this->species[] = $species;
+        }
+
+        return $this;
+    }
+
+    public function removeSpecies(Species $species): self
+    {
+        if ($this->species->contains($species)) {
+            $this->species->removeElement($species);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Country[]
+     */
+    public function getCountries(): Collection
+    {
+        return $this->countries;
+    }
+
+    public function addCountry(Country $country): self
+    {
+        if (!$this->countries->contains($country)) {
+            $this->countries[] = $country;
+        }
+
+        return $this;
+    }
+
+    public function removeCountry(Country $country): self
+    {
+        if ($this->countries->contains($country)) {
+            $this->countries->removeElement($country);
+        }
 
         return $this;
     }

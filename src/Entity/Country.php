@@ -37,15 +37,26 @@ class Country
      */
     private $countryRoles;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\SamplingActivity", mappedBy="countries")
+     */
+    private $samplingActivities;
+
     public function __construct()
     {
         $this->organisations = new ArrayCollection();
         $this->countryRoles = new ArrayCollection();
+        $this->samplingActivities = new ArrayCollection();
     }
 
     public function __toString()
     {
         return $this->country ? $this->getCountryName() : '';
+    }
+
+    public function getCountryName()
+    {
+        return Intl::getRegionBundle()->getCountryName($this->getCountry());
     }
 
     public function getId(): ?int
@@ -127,8 +138,31 @@ class Country
         return $this;
     }
 
-    public function getCountryName()
+    /**
+     * @return Collection|SamplingActivity[]
+     */
+    public function getSamplingActivities(): Collection
     {
-        return Intl::getRegionBundle()->getCountryName($this->getCountry());
+        return $this->samplingActivities;
+    }
+
+    public function addSamplingActivity(SamplingActivity $samplingActivity): self
+    {
+        if (!$this->samplingActivities->contains($samplingActivity)) {
+            $this->samplingActivities[] = $samplingActivity;
+            $samplingActivity->addCountry($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSamplingActivity(SamplingActivity $samplingActivity): self
+    {
+        if ($this->samplingActivities->contains($samplingActivity)) {
+            $this->samplingActivities->removeElement($samplingActivity);
+            $samplingActivity->removeCountry($this);
+        }
+
+        return $this;
     }
 }

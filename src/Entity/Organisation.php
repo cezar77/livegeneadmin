@@ -74,21 +74,21 @@ class Organisation
     private $projects;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\SamplingActivity", mappedBy="partner")
-     * @JMS\Exclude()
+     * @ORM\ManyToMany(targetEntity="App\Entity\SamplingActivity", mappedBy="samplingPartners")
      */
     private $samplingActivities;
 
     public function __construct()
     {
         $this->partnerships = new ArrayCollection();
+        $this->samplingActivities = new ArrayCollection();
     }
 
     public function __toString()
     {
         return $this->id
             ? sprintf('%s (%s)', $this->fullName, $this->shortName)
-            : 'New Organistaion'
+            : 'New Organisation'
         ;
     }
 
@@ -243,7 +243,7 @@ class Organisation
     {
         if (!$this->samplingActivities->contains($samplingActivity)) {
             $this->samplingActivities[] = $samplingActivity;
-            $samplingActivity->setPartnership($this);
+            $samplingActivity->addSamplingPartner($this);
         }
 
         return $this;
@@ -253,10 +253,7 @@ class Organisation
     {
         if ($this->samplingActivities->contains($samplingActivity)) {
             $this->samplingActivities->removeElement($samplingActivity);
-            // set the owning side to null (unless already changed)
-            if ($samplingActivity->getPartnership() === $this) {
-                $samplingActivity->setPartnership(null);
-            }
+            $samplingActivity->removeSamplingPartner($this);
         }
 
         return $this;

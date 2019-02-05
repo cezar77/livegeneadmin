@@ -141,3 +141,8 @@ services:
             - { name: sonata.admin, manager_type: orm, group: 'Sampling management', label: 'Sampling Activities', show_mosaic_button: false }
         public: true
 
+    admin.species:
+        class: App\Admin\SpeciesAdmin
+        arguments: [~, App\Entity\Species, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: 'Sampling management', label: 'Species', show_mosiac_button: false }
