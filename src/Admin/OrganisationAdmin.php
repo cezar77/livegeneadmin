@@ -23,6 +23,8 @@ class OrganisationAdmin extends AbstractAdmin
         $formMapper
             ->add('shortName')
             ->add('fullName')
+            ->add('localName')
+            ->add('url')
             ->add('logoUrl', null, $fileFieldOptions)
             ->add('country', ModelListType::class)
         ;
@@ -68,6 +70,8 @@ class OrganisationAdmin extends AbstractAdmin
         $showMapper
             ->add('shortName')
             ->add('fullName')
+            ->add('localName')
+            ->add('url')
             ->add('logoUrl', null, [
                 'label' => 'Logo',
                 'template' => 'SonataAdmin/CRUD/Organisation/show_logo.html.twig'

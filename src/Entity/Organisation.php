@@ -36,7 +36,19 @@ class Organisation
     private $fullName;
 
     /**
+     * @ORM\Column(type="string", length=200, nullable=true)
+     */
+    private $localName;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Url()
+     */
+    private $url;
+
+    /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Url()
      * @Assert\NotBlank()
      */
     private $logoUrl;
@@ -105,6 +117,30 @@ class Organisation
     public function setFullName(string $fullName): self
     {
         $this->fullName = $fullName;
+
+        return $this;
+    }
+
+    public function getLocalName(): ?string
+    {
+        return $this->localName;
+    }
+
+    public function setLocalName(string $localName): self
+    {
+        $this->localName = $localName;
+
+        return $this;
+    }
+
+    public function getUrl(): ?string
+    {
+        return $this->url;
+    }
+
+    public function setUrl(string $url): self
+    {
+        $this->url = $url;
 
         return $this;
     }
