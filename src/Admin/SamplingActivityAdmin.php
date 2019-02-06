@@ -10,6 +10,9 @@ use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Sonata\CoreBundle\Form\Type\DatePickerType;
 use Sonata\AdminBundle\Form\Type\ModelListType;
+use Sonata\AdminBundle\Form\Type\CollectionType;
+use Sonata\Form\Type\DateRangeType;
+use Sonata\DoctrineORMAdminBundle\Filter\DateRangeFilter;
 
 class SamplingActivityAdmin extends AbstractAdmin
 {
@@ -40,6 +43,10 @@ class SamplingActivityAdmin extends AbstractAdmin
                 'dp_pick_time' => false,
                 'format' => DateType::HTML5_FORMAT
             ])
+            ->add('samplingDocuments', null, [
+                'label' => 'Sampling documents',
+                'required' => false
+            ])
         ;
     }
     
@@ -51,8 +58,15 @@ class SamplingActivityAdmin extends AbstractAdmin
             ->add('species')
             ->add('countries')
             ->add('description')
-            ->add('startDate')
-            ->add('endDate')
+            ->add('startDate', DateRangeFilter::class, [
+                'field_type' => DateRangeType::class,
+            ])
+            ->add('endDate', DateRangeFilter::class, [
+                'field_type' => DateRangeType::class,
+            ])
+            ->add('samplingDocuments.samplingDocumentType', null, [
+                'label' => 'Sampling document type'
+            ])
         ;
     }
 
@@ -88,6 +102,7 @@ class SamplingActivityAdmin extends AbstractAdmin
             ->add('startDate')
             ->add('endDate')
             ->add('owner')
+            ->add('samplingDocumentations')
         ;
     }
 
