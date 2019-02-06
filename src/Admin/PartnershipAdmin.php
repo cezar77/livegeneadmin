@@ -28,10 +28,10 @@ class PartnershipAdmin extends AbstractAdmin
                 'dp_pick_time' => false,
                 'format' => DateType::HTML5_FORMAT
             ])
-            ->add('contact', null, array(
+            ->add('contact', null, [
                 'label' => 'Contact person(s)',
                 'required' => true,
-            ))
+            ])
             ->add('partnershipType', ModelListType::class)
         ;
     }
