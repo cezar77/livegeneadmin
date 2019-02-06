@@ -26,7 +26,12 @@ class SamplingDocumentationAdmin extends AbstractAdmin
     
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
-        $datagridMapper->add('document');
+        $datagridMapper
+            ->add('samplingActivity')
+            ->add('samplingDocumentType')
+            ->add('document')
+            ->add('owner')
+        ;
     }
 
     protected function configureListFields(ListMapper $listMapper)

@@ -31,6 +31,7 @@ class PartnershipAdmin extends AbstractAdmin
             ->add('contact', null, [
                 'label' => 'Contact person(s)',
                 'required' => true,
+                'by_reference' => false,
             ])
             ->add('partnershipType', ModelListType::class)
         ;

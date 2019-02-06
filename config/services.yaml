@@ -139,6 +139,8 @@ services:
         arguments: [~, App\Entity\SamplingActivity, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, group: 'Sampling management', label: 'Sampling Activities', show_mosaic_button: false }
+        calls:
+            - [ addChild, ['@admin.sampling_documentation'] ]
         public: true
 
     admin.species:
