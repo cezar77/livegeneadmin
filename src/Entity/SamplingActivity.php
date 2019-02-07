@@ -59,7 +59,7 @@ class SamplingActivity
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\SamplingDocumentation", mappedBy="samplingActivity")
-     * @JMS\MaxDepth(2)
+     * @JMS\MaxDepth(3)
      */
     private $samplingDocuments;
 

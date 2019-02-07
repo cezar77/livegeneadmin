@@ -38,7 +38,7 @@ class SamplingDocumentation
     /**
      * @ORM\ManyToOne(targetEntity="App\Application\Sonata\MediaBundle\Entity\Media", cascade={"persist", "remove"}, fetch="LAZY")
      * @ORM\JoinColumn(nullable=false)
-     * @JMS\MaxDepth(4)
+     * @JMS\MaxDepth(2)
      */
     private $document;
 
@@ -105,5 +105,13 @@ class SamplingDocumentation
         $this->owner = $owner;
 
         return $this;
+    }
+
+    /**
+     * @JMS\VirtualProperty()
+     */
+    public function getDownload(): string
+    {
+        return sprintf('/media/download/%s', $this->getDocument()->getId());
     }
 }
